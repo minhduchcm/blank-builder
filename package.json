@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node build/server/index.js",
-    "build": "",
+    "build": "yarn buildServer && yarn buildClient",
+    "buildServer": "cross-env NODE_ENV=production babel src/server -d build/server --presets es2015,es2017,stage-0",
+    "buildClient": "cross-env NODE_ENV=production webpack --config webpack/webpack.client.config.js",
     "dev": "concurrently -k \"npm run devServer\" \"npm run devClient\"",
     "devClient": "webpack-dev-server --config webpack/webpack.client.config.js",
     "devServer": "nodemon --watch src/server src/server/index.js --exec babel-node --presets es2015,es2017,stage-0",
