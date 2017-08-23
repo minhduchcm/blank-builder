@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import compression from "compression";
+import path from "path";
 
 import config from "./config";
 
@@ -10,9 +11,10 @@ const app = express();
 
 app.use(compression());
 app.use(morgan());
+app.use(express.static(path.resolve("build/client")));
 
-app.use((req, res) => {
-  res.json({ messages: "HelloWorld!!!" });
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve("build/client/index.html"));
 });
 
 app.listen(config.PORT, err => {
