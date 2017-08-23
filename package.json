@@ -16,6 +16,7 @@
     "devClient": "webpack-dev-server --config webpack/webpack.client.config.js",
     "devServer": "nodemon --watch src/server src/server/index.js --exec babel-node --presets es2015,es2017,stage-0",
     "prebuild": "rimraf build/*",
+    "postinstall": "yarn build",
     "lint": "eslint src"
   },
   "devDependencies": {
