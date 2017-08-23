@@ -2,7 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
-const rootEl = document.getElementById("root");
+import configureStore from "../shared/configureStore";
+import Root from "../shared/containers/root-container";
 
-const Root = require("../shared/containers/root-container").default;
-ReactDOM.render(<Root />, rootEl);
+const rootEl = document.getElementById("root");
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer>
+      <Root />
+    </AppContainer>
+  </Provider>,
+  rootEl
+);
