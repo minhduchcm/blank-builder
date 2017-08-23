@@ -10,9 +10,7 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer>
-      <Root />
-    </AppContainer>
+    <Root />
   </Provider>,
   rootEl
 );
