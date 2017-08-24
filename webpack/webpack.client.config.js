@@ -157,7 +157,12 @@ if (isProduction) {
         "style-loader",
         "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
         "postcss-loader",
-        "sass-loader"
+        {
+          loader: "sass-loader",
+          options: {
+            includePaths: [path.resolve(__dirname, "../src/shared/theme")]
+          }
+        }
       ]
     },
     {
@@ -207,9 +212,7 @@ module.exports = {
       ".jsx"
     ],
     modules: [path.resolve(__dirname, "../node_modules"), sourcePath],
-    alias: {
-      style: path.join(sourcePath, "./client/core/styles")
-    }
+    alias: {}
   },
   plugins,
   devServer: {
