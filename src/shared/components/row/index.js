@@ -9,6 +9,7 @@ export default DropTarget(DragItemTypes.ROW, rowTarget, connect => ({
 }))(
   DragSource(DragItemTypes.ROW, rowSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
   }))(Row)
 );
