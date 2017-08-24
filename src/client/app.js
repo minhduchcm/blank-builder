@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import configureStore from "../shared/configureStore";
-import Root from "../shared/containers/root-container";
+import Root from "../shared/components/root-container";
+import "./global.scss";
 
 const rootEl = document.getElementById("root");
 const store = configureStore();

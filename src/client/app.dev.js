@@ -5,7 +5,8 @@ import { AppContainer } from "react-hot-loader";
 import RedBox from "redbox-react";
 
 import configureStore from "../shared/configureStore";
-import Root from "../shared/containers/root-container";
+import Root from "../shared/components/root-container";
+import "./global.scss";
 
 const rootEl = document.getElementById("root");
 const store = configureStore();
@@ -28,8 +29,8 @@ try {
 }
 
 if (module.hot) {
-  module.hot.accept("../shared/containers/root-container", () => {
-    const Root = require("../shared/containers/root-container").default;
+  module.hot.accept("../shared/components/root-container", () => {
+    const Root = require("../shared/components/root-container").default;
     try {
       ReactDOM.render(
         <Provider store={store}>
