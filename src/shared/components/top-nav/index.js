@@ -1,2 +1,8 @@
+import { connect } from "react-redux";
 import TopNav from "./top-nav";
-export default TopNav;
+import { toogle } from "../../actions/top-nav";
+
+function mapStateToProps(state) {
+  return state.get("topNav").toJS();
+}
+export default connect(mapStateToProps, { toogle })(TopNav);

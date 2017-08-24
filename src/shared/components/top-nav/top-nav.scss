@@ -1,15 +1,15 @@
 @import "variables";
 
 .top-nav {
+  position: relative;
   z-index: 9999;
-  top: -#{$top-nav-height};
+  margin-top: -#{$top-nav-height};
   width: 100%;
   height: #{$top-nav-height};
   background-color: #{$light};
-
-  transition: #{$top-nav-transition-time} top ease-in-out;
+  transition: margin #{$top-nav-transition-time} ease-in-out;
 
   &.is-expanded {
-    top: 0px;
+    margin-top: 0px;
   }
 }

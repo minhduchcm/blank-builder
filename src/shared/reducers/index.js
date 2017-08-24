@@ -1,5 +1,4 @@
-import { Map } from "immutable";
 import { combineReducers } from "redux-immutable";
-import counter from "./counter";
+import topNav from "./top-nav";
 
-export default combineReducers({ counter });
+export default combineReducers({ topNav });
