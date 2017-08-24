@@ -122,18 +122,28 @@ if (isProduction) {
     },
     {
       test: /^((?!\.theme).)*\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: "style-loader",
-        loader:
-          "css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader!sass-loader"
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [
+          "css-loader?modules&importLoaders=1&localIdentName=[name]_[hash:base64:5]",
+          "postcss-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              includePaths: [path.resolve(__dirname, "../src/shared/theme")]
+            }
+          }
+        ]
       })
     },
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: "style-loader",
-        loader:
-          "css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader"
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [
+          "css-loader?modules&importLoaders=1&localIdentName=[name]_[hash:base64:5]",
+          "postcss-loader"
+        ]
       })
     },
     {
