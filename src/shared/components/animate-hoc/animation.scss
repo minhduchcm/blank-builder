@@ -1,9 +1,54 @@
 @import 'variables';
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fly-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fly-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .fade-entering {
   animation-name: fade-in;
 }
 
 .fade-exiting {
+  animation-name: fade-out;
+}
+
+.fly-entering {
+  animation-name: fly-in;
+}
+
+.fly-exiting {
+  background-color: #000 !important;
   animation-name: fade-out;
 }

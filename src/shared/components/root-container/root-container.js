@@ -4,23 +4,29 @@ import ReactTooltip from "react-tooltip";
 
 import style from "./root-container.scss";
 
+import { ModalsManager } from "../modals";
+
 import TopNav from "../top-nav";
 import Builder from "../builder";
 import Modals from "../modals";
 
 class RootContainer extends Component {
+  modalsManager = new ModalsManager();
+
   static propTypes = {
     showModal: PropTypes.func.isRequired,
     hideModal: PropTypes.func.isRequired
   };
   static childContextTypes = {
     showModal: PropTypes.func.isRequired,
-    hideModal: PropTypes.func.isRequired
+    hideModal: PropTypes.func.isRequired,
+    modalsManager: PropTypes.object.isRequired
   };
   getChildContext() {
     return {
       showModal: this.props.showModal,
-      hideModal: this.props.hideModal
+      hideModal: this.props.hideModal,
+      modalsManager: this.modalsManager
     };
   }
   render() {

@@ -4,30 +4,32 @@ import classnames from "classnames";
 
 import style from "./box.scss";
 
-const Box = ({ modalType, modalProps, state }, { modalsManager }) => {
-  if (modalType) {
-    let modalData = modalsManager.getModal(modalType);
-    return (
-      <div
-        className={classnames(style["modal"], style[state])}
-        onClick={e => e.stopPropagation()}
-      >
-        <div className={style["modal-body"]}>
-          <h1>
-            {modalData.title}
-          </h1>
-          <p className={style["sub-title"]}>
-            {modalData.subTitle}
-          </p>
-          <modalData.component {...modalProps} />
-        </div>
+const Box = (
+  { transitionClass, style: inlineStyle, modalType, modalProps },
+  { modalsManager }
+) => {
+  const { title, subTitle, component: Body } = modalsManager.get(modalType);
+  return (
+    <div
+      className={classnames(style["modal"], style[transitionClass])}
+      onClick={e => e.stopPropagation()}
+    >
+      <div className={style["modal-body"]}>
+        <h1>
+          {title}
+        </h1>
+        <p className={style["sub-title"]}>
+          {subTitle}
+        </p>
+        <Body {...modalProps} />
       </div>
-    );
-  }
-  return null;
+    </div>
+  );
 };
 
 Box.propTypes = {
+  transitionClassName: PropTypes.string,
+  style: PropTypes.object,
   modalType: PropTypes.string,
   modalProps: PropTypes.object,
   state: PropTypes.string

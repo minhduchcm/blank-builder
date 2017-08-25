@@ -1,9 +1,12 @@
 import { connect } from "react-redux";
 import ModalRoot from "./modal-root";
-import { hideModal } from "../../actions/modals";
+import { hideModal, closeModal } from "../../actions/modals";
 
 function mapStateToProps(state) {
-  return state.get("modals").toJS();
+  return {
+    modals: state.get("modals").toJS()
+  };
 }
 
-export default connect(mapStateToProps, { hideModal })(ModalRoot);
+export default connect(mapStateToProps, { hideModal, closeModal })(ModalRoot);
+export const ModalsManager = require("./modals-manager").default;

@@ -4,22 +4,20 @@ import classnames from "classnames";
 
 import style from "./backdrop.scss";
 
-const Backdrop = ({
-  hideModal,
-  transitionClassName,
-  style: inlineStyle,
-  children
-}) =>
-  <div
-    style={inlineStyle}
-    className={classnames(style["modal-backdrop"], transitionClassName)}
-    onClick={hideModal}
-  >
-    {children}
-  </div>;
+const Backdrop = ({ hideModal, transitionClass, style: inlineStyle }) => {
+  return (
+    <div
+      style={inlineStyle}
+      className={classnames(style["modal-backdrop"], style[transitionClass])}
+      onClick={hideModal}
+    />
+  );
+};
 
 Backdrop.propTypes = {
-  hideModal: PropTypes.func
+  hideModal: PropTypes.func,
+  transitionClass: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default Backdrop;
