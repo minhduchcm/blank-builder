@@ -5,12 +5,17 @@ import classnames from "classnames";
 import style from "./box.scss";
 
 const Box = (
-  { transitionClass, style: inlineStyle, modalType, modalProps },
+  { transitionClass, style: inlineStyle, modalType, modalProps, stack },
   { modalsManager }
 ) => {
   const { title, subTitle, component: Body } = modalsManager.get(modalType);
+  const transform = `translateX(-50%) translateY(${100 *
+    (1 - stack)}px) scale(${stack / 4 + 0.75})`;
+  const opacity = stack / 2 + 0.5;
+
   return (
     <div
+      style={{ transform, opacity }}
       className={classnames(style["modal"], style[transitionClass])}
       onClick={e => e.stopPropagation()}
     >

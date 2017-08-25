@@ -29,11 +29,15 @@ class ModalRoot extends Component {
       );
     }
     items.push(
-      modals
-        .filter(modal => modal.isVisible)
-        .map(({ id, type, props }, index) =>
-          <Box modalType={type} modalProps={props} key={id} timeout={300} />
-        )
+      modals.map(({ id, type, props }, index) =>
+        <Box
+          modalType={type}
+          modalProps={props}
+          key={id}
+          timeout={300}
+          stack={(index + 1) / modals.length}
+        />
+      )
     );
     return (
       <TransitionGroup>
