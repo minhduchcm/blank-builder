@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import style from "./builder.scss";
+
+import ViewportWrapper from "../viewport-wrapper";
 import Row from "../row";
 import { modalTypes } from "../../const";
 
@@ -18,19 +20,21 @@ class Builder extends Component {
       <Row key={index} index={index} moveRow={this.props.moveRow} {...row} />
     );
     return (
-      <div className={style["builder"]}>
-        <p>
-          <button onClick={this.props.addRow}>add row</button>
-        </p>
-        <p>
-          <button
-            onClick={() => this.context.showModal(modalTypes.EMPTY_MODAL)}
-          >
-            show modal
-          </button>
-        </p>
-        {rows}
-      </div>
+      <ViewportWrapper>
+        <div className={style["builder"]}>
+          <p>
+            <button onClick={this.props.addRow}>add row</button>
+          </p>
+          <p>
+            <button
+              onClick={() => this.context.showModal(modalTypes.EMPTY_MODAL)}
+            >
+              show modal
+            </button>
+          </p>
+          {rows}
+        </div>
+      </ViewportWrapper>
     );
   }
 }
