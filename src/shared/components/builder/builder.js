@@ -22,16 +22,6 @@ class Builder extends Component {
     return (
       <ViewportWrapper>
         <div className={style["builder"]}>
-          <p>
-            <button onClick={this.props.addRow}>add row</button>
-          </p>
-          <p>
-            <button
-              onClick={() => this.context.showModal(modalTypes.EMPTY_MODAL)}
-            >
-              show modal
-            </button>
-          </p>
           {rows}
         </div>
       </ViewportWrapper>
