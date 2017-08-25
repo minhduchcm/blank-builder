@@ -12,4 +12,17 @@
   &.is-expanded {
     margin-top: 0px;
   }
+
+  .nav-center {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

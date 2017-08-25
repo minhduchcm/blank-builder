@@ -1,13 +1,13 @@
 import { DragSource, DropTarget } from "react-dnd";
-import { DragItemTypes } from "../../const";
+import { dragItemTypes } from "../../const";
 import Row from "./row";
 import rowSource from "./rowSource";
 import rowTarget from "./rowTarget";
 
-export default DropTarget(DragItemTypes.ROW, rowTarget, connect => ({
+export default DropTarget(dragItemTypes.ROW, rowTarget, connect => ({
   connectDropTarget: connect.dropTarget()
 }))(
-  DragSource(DragItemTypes.ROW, rowSource, (connect, monitor) => ({
+  DragSource(dragItemTypes.ROW, rowSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()

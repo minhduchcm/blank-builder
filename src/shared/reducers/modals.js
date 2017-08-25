@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { v4 } from "uuid";
-import { SHOW_MODAL, HIDE_MODAL, CLOSE_MODAL, ModalTypes } from "../const";
+import { SHOW_MODAL, HIDE_MODAL, CLOSE_MODAL, modalTypes } from "../const";
 
 export default (state = fromJS([]), action) => {
   switch (action.type) {

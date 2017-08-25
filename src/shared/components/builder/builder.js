@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import style from "./builder.scss";
 import Row from "../row";
-import { ModalTypes } from "../../const";
+import { modalTypes } from "../../const";
 
 class Builder extends Component {
   static propTypes = {
@@ -24,7 +24,7 @@ class Builder extends Component {
         </p>
         <p>
           <button
-            onClick={() => this.context.showModal(ModalTypes.EMPTY_MODAL)}
+            onClick={() => this.context.showModal(modalTypes.EMPTY_MODAL)}
           >
             show modal
           </button>

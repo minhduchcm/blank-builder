@@ -130,7 +130,10 @@ if (isProduction) {
           {
             loader: "sass-loader",
             options: {
-              includePaths: [path.resolve(__dirname, "../src/shared/theme")]
+              includePaths: [
+                path.resolve(__dirname, "../src/shared/theme"),
+                path.resolve(__dirname, "../src/client")
+              ]
             }
           }
         ]
