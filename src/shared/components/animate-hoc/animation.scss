@@ -1,0 +1,9 @@
+@import 'variables';
+
+.fade-entering {
+  animation-name: fade-in;
+}
+
+.fade-exiting {
+  animation-name: fade-out;
+}
