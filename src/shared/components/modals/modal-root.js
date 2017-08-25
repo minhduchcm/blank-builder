@@ -36,11 +36,9 @@ class ModalRoot extends Component {
         )
     );
     return (
-      <div>
-        <TransitionGroup>
-          {items}
-        </TransitionGroup>
-      </div>
+      <TransitionGroup>
+        {items}
+      </TransitionGroup>
     );
   }
 }
