@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import style from "./builder.scss";
 import Row from "../row";
+import { ModalTypes } from "../../const";
 
 class Builder extends Component {
   static propTypes = {
@@ -9,14 +10,25 @@ class Builder extends Component {
     moveRow: PropTypes.func.isRequired,
     rows: PropTypes.array.isRequired
   };
-
+  static contextTypes = {
+    showModal: PropTypes.func.isRequired
+  };
   render() {
     const rows = this.props.rows.map((row, index) =>
       <Row key={index} index={index} moveRow={this.props.moveRow} {...row} />
     );
     return (
       <div className={style["builder"]}>
-        <button onClick={this.props.addRow}>add row</button>
+        <p>
+          <button onClick={this.props.addRow}>add row</button>
+        </p>
+        <p>
+          <button
+            onClick={() => this.context.showModal(ModalTypes.EMPTY_MODAL)}
+          >
+            show modal
+          </button>
+        </p>
         {rows}
       </div>
     );

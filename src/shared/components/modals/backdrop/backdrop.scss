@@ -1,0 +1,10 @@
+@import 'variables';
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba($gray, 0.5);
+  z-index: 200;
+}
