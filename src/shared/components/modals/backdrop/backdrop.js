@@ -4,6 +4,10 @@ import classnames from "classnames";
 
 import style from "./backdrop.scss";
 
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
+let yeah = postcss([autoprefixer]);
+
 const Backdrop = ({ hideModal, transitionClass, style: inlineStyle }) => {
   return (
     <div

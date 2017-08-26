@@ -1,9 +1,9 @@
-import { ADD_ROW, MOVE_ROW } from "../../const";
+import { ADD_SECTION, MOVE_SECTION } from "../../const";
 
-export function addRow(index) {
-  return { type: ADD_ROW, index };
+export function addSection(index) {
+  return { type: ADD_SECTION, index };
 }
 
-export function moveRow(index, toindex) {
-  return { type: MOVE_ROW, index, toindex };
+export function moveSection(index, toindex) {
+  return { type: MOVE_SECTION, index, toindex };
 }

@@ -4,13 +4,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const autoprefixer = require("autoprefixer");
+const autoprefixerInlineStyle = require("./babel-plugin-autoprefixer-react-inlinestyle");
 
 const nodeEnv = process.env.NODE_ENV || "development";
 const isProduction = nodeEnv === "production";
 
 const sourcePath = path.join(__dirname, "../src/client");
 const buildPath = path.join(__dirname, "../build/client");
-const imgPath = path.join(__dirname, "../src/client/assets/img");
+const imgPaths = [path.join(__dirname, "../src")];
 
 const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
@@ -77,12 +78,12 @@ const rules = [
   },
   {
     test: /\.(png|gif|jpg)$/,
-    include: imgPath,
+    include: imgPaths,
     use: "url-loader?limit=20480&name=assets/[name]-[hash].[ext]"
   },
   {
     test: /\.svg$/,
-    include: imgPath,
+    include: imgPaths,
     use: "file-loader"
   }
 ];

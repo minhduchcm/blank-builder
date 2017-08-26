@@ -1,4 +1,4 @@
 import { combineReducers } from "redux-immutable";
-import rows from "./rows";
+import sections from "./sections";
 
-export default combineReducers({ rows });
+export default combineReducers({ sections });

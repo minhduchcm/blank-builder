@@ -1,9 +1,9 @@
 @import "variables";
 
 .viewport {
+  flex-grow: 1;
   margin: 0 auto;
-  max-height: 100%;
-  max-width: 100%;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   &.mobile {

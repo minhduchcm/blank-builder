@@ -1,6 +1,7 @@
 class ModalsManager {
   constructor() {
     this.register(require("./empty-modal").default);
+    this.register(require("./add-section-modal").default);
   }
   modals = [];
   register(modal) {

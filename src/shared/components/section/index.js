@@ -13,3 +13,6 @@ export default DropTarget(dragItemTypes.ROW, rowTarget, connect => ({
     isDragging: monitor.isDragging()
   }))(Row)
 );
+
+export const SectionTemplatesManager = require("./section-templates-manager")
+  .default;

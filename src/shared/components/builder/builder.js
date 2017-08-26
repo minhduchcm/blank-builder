@@ -3,26 +3,46 @@ import PropTypes from "prop-types";
 import style from "./builder.scss";
 
 import ViewportWrapper from "../viewport-wrapper";
-import Row from "../row";
+import AddWidgetButton from "../add-widget-button";
+import Section from "../section";
 import { modalTypes } from "../../const";
 
 class Builder extends Component {
   static propTypes = {
-    addRow: PropTypes.func.isRequired,
-    moveRow: PropTypes.func.isRequired,
-    rows: PropTypes.array.isRequired
+    addSection: PropTypes.func.isRequired,
+    moveSection: PropTypes.func.isRequired,
+    sections: PropTypes.array.isRequired
   };
   static contextTypes = {
     showModal: PropTypes.func.isRequired
   };
-  render() {
-    const rows = this.props.rows.map((row, index) =>
-      <Row key={index} index={index} moveRow={this.props.moveRow} {...row} />
+  renderWelcomeSection() {
+    return (
+      <div>
+        <h1>Create your first story</h1>
+        <p>It's time to build demo! To start, we need to create widgets.</p>
+        <p>
+          Click <AddWidgetButton /> to start your first widget......
+        </p>
+      </div>
     );
+  }
+  render() {
+    const sections =
+      this.props.sections.lenght > 0
+        ? this.props.sections.map((section, index) =>
+            <Section
+              key={index}
+              index={index}
+              moveSection={this.props.moveSection}
+              {...section}
+            />
+          )
+        : this.renderWelcomeSection();
     return (
       <ViewportWrapper>
         <div className={style["builder"]}>
-          {rows}
+          {sections}
         </div>
       </ViewportWrapper>
     );

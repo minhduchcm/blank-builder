@@ -8,14 +8,14 @@ const Box = (
   { transitionClass, style: inlineStyle, modalType, modalProps, stack },
   { modalsManager }
 ) => {
-  const { title, subTitle, component: Body } = modalsManager.get(modalType);
+  const { title, description, component: Body } = modalsManager.get(modalType);
   const transform = `translateX(-50%) translateY(${100 *
     (1 - stack)}px) scale(${stack / 4 + 0.75})`;
   const opacity = stack / 2 + 0.5;
-
+  const pointerEvents = stack === 1 ? "all" : "none";
   return (
     <div
-      style={{ transform, opacity }}
+      style={{ transform, opacity, pointerEvents }}
       className={classnames(style["modal"], style[transitionClass])}
       onClick={e => e.stopPropagation()}
     >
@@ -23,8 +23,8 @@ const Box = (
         <h1>
           {title}
         </h1>
-        <p className={style["sub-title"]}>
-          {subTitle}
+        <p className={style["description"]}>
+          {description}
         </p>
         <Body {...modalProps} />
       </div>
