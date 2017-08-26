@@ -10,7 +10,7 @@ const AddWidgetButton = ({ index }, { showModal }) => {
     <button
       onClick={() =>
         showModal(modalTypes.ADD_SECTION_MODAL, {
-          index
+          sectionIndex: index
         })}
       className={style["add-widget-button"]}
     >

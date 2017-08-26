@@ -11,6 +11,8 @@ export const SHOW_MODAL = "@Modal/SHOW_MODAL";
 export const HIDE_MODAL = "@Modal/HIDE_MODAL";
 export const CLOSE_MODAL = "@Modal/CLOSE_MODAL";
 
+export const SELECT_TAB = "@TabPanel/SELECT_TAB";
+
 export const modalTypes = {
   EMPTY_MODAL: "@Modal/EMPTY_MODAL",
   ADD_SECTION_MODAL: "@Modal/ADD_SECTION_MODAL"
