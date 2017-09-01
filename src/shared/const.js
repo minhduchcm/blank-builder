@@ -6,6 +6,10 @@ export const TOOGLE_TOP_NAV = "@TopNav/TOOGLE";
 
 export const ADD_SECTION = "@Builder/ADD_ROW";
 export const MOVE_SECTION = "@Builder/MOVE_ROW";
+export const DELETE_SECTION = "@Builder/DELETE_SECTION";
+export const SET_SECTION_DATA = "@Builder/SET_SECTION_DATA";
+export const BUILDER_OFFSET_HEIGHT = 35;
+export const BUILDER_PADDING_TOP = 50;
 
 export const SHOW_MODAL = "@Modal/SHOW_MODAL";
 export const HIDE_MODAL = "@Modal/HIDE_MODAL";
@@ -15,9 +19,10 @@ export const SELECT_TAB = "@TabPanel/SELECT_TAB";
 
 export const modalTypes = {
   EMPTY_MODAL: "@Modal/EMPTY_MODAL",
-  ADD_SECTION_MODAL: "@Modal/ADD_SECTION_MODAL"
+  ADD_SECTION_MODAL: "@Modal/ADD_SECTION_MODAL",
+  SELECT_IMAGE: "@Modal/SELECT_IMAGE"
 };
-export const dragItemTypes = { ROW: "@DragItemTypes/ROW" };
+export const dragItemTypes = { SECTION: "@DragItemTypes/SECTION" };
 export const viewports = {
   DESKTOP: "@Viewport/DEKSTOP",
   TABLET: "@Viewport/TABLET",

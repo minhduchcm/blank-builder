@@ -1,0 +1,41 @@
+@import "variables";
+.row {
+  position: relative;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  &:hover {
+    border: 1px solid #{$light-gray};
+    .handle {
+      visibility: visible;
+    }
+  }
+  &.is-dragging {
+  }
+  .handle {
+    z-index: 300;
+    cursor: pointer;
+    visibility: hidden;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    width: 36px;
+    height: 36px;
+    border: 1px solid #{$light-gray};
+    color: #{$light-gray};
+    background: white;
+    font-size: 2em;
+
+    &:hover {
+      color: #{$gray};
+      border: 1px solid #{$gray};
+    }
+
+    &.right {
+      transform: translateX(50%) translateY(-50%);
+      left: auto;
+      right: 0 !important;
+    }
+  }
+}

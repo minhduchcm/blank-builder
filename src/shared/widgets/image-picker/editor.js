@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { modalTypes } from "../../const";
+
 import style from "./image-picker.scss";
 
 class ImagePicker extends Component {
   render() {
-    const { modalsManager } = this.context;
+    const { showModal } = this.context;
     return (
       <div className={style["img-picker"]}>
         <img src={this.props.img} />
         <div className={style["btn-change-backprop"]}>
           <button
             className={style["btn-change"]}
-            onClick={() => modalsManager.showModal("@MODAL/UPLOAD_IMAGE", {})}
+            onClick={() => showModal(modalTypes.SELECT_IMAGE, {})}
           >
             Change Image
           </button>
@@ -27,7 +29,7 @@ ImagePicker.propTypes = {
 };
 
 ImagePicker.contextTypes = {
-  modalsManager: PropTypes.object.isRequired
+  showModal: PropTypes.func.isRequired
 };
 
 export default ImagePicker;

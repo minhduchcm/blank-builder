@@ -1,21 +1,44 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { findDOMNode } from "react-dom";
 import style from "./builder.scss";
 
 import ViewportWrapper from "../viewport-wrapper";
 import AddWidgetButton from "../add-widget-button";
+import AddWidgetLine from "../add-widget-line";
 import Section from "../section";
+
+import DragPreviewLayer from "./drag-preview-layer";
+
 import { modalTypes } from "../../const";
 
 class Builder extends Component {
   static propTypes = {
+    connectDropTarget: PropTypes.func.isRequired,
     addSection: PropTypes.func.isRequired,
     moveSection: PropTypes.func.isRequired,
+    deleteSection: PropTypes.func.isRequired,
+    setSectionData: PropTypes.func.isRequired,
+    nbSections: PropTypes.number.isRequired,
     sections: PropTypes.array.isRequired
   };
   static contextTypes = {
     showModal: PropTypes.func.isRequired
   };
+  state = {
+    placeholderIndex: undefined,
+    placeholderHeight: 0,
+    isScrolling: false
+  };
+  sectionNodes = [];
+  sectionRefs = [];
+  componentDidUpdate() {
+    this.sectionNodes = this.sectionRefs.map(ref => {
+      const boundingClientRect = findDOMNode(ref).getBoundingClientRect();
+      return boundingClientRect;
+    });
+  }
+
   renderWelcomeSection() {
     return (
       <div>
@@ -27,23 +50,67 @@ class Builder extends Component {
       </div>
     );
   }
+  renderPlaceHolder() {
+    return (
+      <div
+        className="row"
+        key="placeholder"
+        style={{
+          backgroundColor: "#ddd",
+          height: this.state.placeholderHeight
+        }}
+      />
+    );
+  }
   render() {
-    const sections =
-      this.props.sections.lenght > 0
-        ? this.props.sections.map((section, index) =>
-            <Section
-              key={index}
-              index={index}
-              moveSection={this.props.moveSection}
-              {...section}
-            />
-          )
-        : this.renderWelcomeSection();
+    const {
+      nbSections,
+      sections,
+      moveSection,
+      deleteSection,
+      setSectionData,
+      connectDropTarget,
+      isOver,
+      canDrop
+    } = this.props;
+    const { placeholderIndex } = this.state;
+
+    let cardList = [];
+    let builderItems = [];
+    if (isOver && canDrop && placeholderIndex === -1)
+      builderItems.push(this.renderPlaceHolder());
+
+    sections.forEach((section, index) => {
+      builderItems.push(
+        <div key={index} className={"row"}>
+          {index === 0 ? <AddWidgetLine index={index} /> : null}
+          <Section
+            ref={ref => {
+              if (ref) {
+                this.sectionRefs[index] = ref;
+              }
+            }}
+            index={index}
+            moveSection={moveSection}
+            deleteSection={() => deleteSection(index)}
+            setSectionData={data => setSectionData(index, data)}
+            {...section}
+          />
+          <AddWidgetLine index={index + 1} />
+        </div>
+      );
+      if (isOver && canDrop && index === placeholderIndex)
+        builderItems.push(this.renderPlaceHolder());
+    });
     return (
       <ViewportWrapper>
-        <div className={style["builder"]}>
-          {sections}
-        </div>
+        {connectDropTarget(
+          <div className={style["builder"]}>
+            {nbSections > 0 ? builderItems : this.renderWelcomeSection()}
+            <div style={{ height: "150px" }} /> {/*bottom padding section*/}
+          </div>
+        )}
+        <DragPreviewLayer />
       </ViewportWrapper>
     );
   }

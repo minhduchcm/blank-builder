@@ -19,7 +19,7 @@ Header.contextTypes = {
 };
 
 const Panels = (
-  { sectionIndex, activeTab },
+  { sectionIndex, activeTab, addSection },
   { sectionTemplatesManager, hideModal }
 ) => {
   const group = sectionTemplatesManager.getTemplateGroups()[activeTab];
@@ -34,6 +34,7 @@ const Panels = (
               <button
                 onClick={() => {
                   //TODO: dispatch add section
+                  addSection(sectionIndex, template.type, template.defaultData);
                   hideModal();
                 }}
               >

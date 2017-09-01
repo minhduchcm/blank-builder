@@ -1,0 +1,18 @@
+@import 'variables';
+
+.container {
+  z-index: 2;
+  width: 100%;
+  position: relative;
+  .add-widget-line {
+    position: absolute;
+    height: 40px;
+    margin: -20px 0px;
+    width: 100%;
+    button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

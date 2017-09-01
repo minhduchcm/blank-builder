@@ -21,7 +21,10 @@ class DraftJsEditor extends Component {
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
-
+  handleDrop(...props) {
+    console.log(props);
+    return "handled";
+  }
   handleKeyCommand(command) {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -64,22 +67,15 @@ class DraftJsEditor extends Component {
 
   render() {
     return (
-      <div
+      <Editor
         className={this.props.className}
-        style={{
-          fontFamily: this.props.fontFamily,
-          fontSize: this.props.fontSize,
-          textAlign: this.props.alignment
-        }}
-      >
-        <Editor
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-          editorState={this.state.editorState}
-          onChange={this.handleEditorChange}
-          handleKeyCommand={this.handleKeyCommand}
-        />
-      </div>
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        editorState={this.state.editorState}
+        onChange={this.handleEditorChange}
+        handleKeyCommand={this.handleKeyCommand}
+        handleDrop={this.handleDrop}
+      />
     );
   }
 }

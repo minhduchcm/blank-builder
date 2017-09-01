@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactTooltip from "react-tooltip";
 
+import theme from "../../theme/default-theme/default.scss";
 import style from "./root-container.scss";
 
 import { ModalsManager } from "../modals";

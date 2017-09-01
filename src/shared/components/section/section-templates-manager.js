@@ -7,7 +7,7 @@ class SectionTemplateManager {
       .concat(templates);
   }
   get(type) {
-    return this.templates[type];
+    return this.templates.find(t => t.type === type);
   }
   getTemplateGroups() {
     return this.templates.map(template => template.group);

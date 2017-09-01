@@ -15,6 +15,9 @@
   font-family: "Arial";
   background: white;
 }
+:global(strong) {
+  font-weight: bold;
+}
 :global(ol),
 :global(ul) {
   list-style: none;

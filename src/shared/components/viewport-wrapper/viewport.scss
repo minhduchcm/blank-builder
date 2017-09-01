@@ -2,10 +2,12 @@
 
 .viewport {
   flex-grow: 1;
-  margin: 0 auto;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  position: relative;
+  margin: -1px auto;
+  width: calc(100% - 2px);
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #{$light-gray};
   &.mobile {
     max-width: 414px;
   }
