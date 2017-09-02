@@ -14,6 +14,11 @@ class Paragraph extends Component {
     };
   }
   render() {
+    if (
+      this.props.data.title === undefined ||
+      this.props.data.content === undefined
+    )
+      return null;
     const titleString = stateToHTML(
       convertFromRaw(this.props.data.title.contentState)
     );

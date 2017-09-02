@@ -63,9 +63,7 @@ export default class DragPreviewLayer extends Component {
       y += initialOffset.y;
     }
 
-    const transform = `translate(0px, ${y -
-      BUILDER_OFFSET_HEIGHT -
-      props.item.height / 2}px)`;
+    const transform = `translate(0px, ${y + 11 - props.item.height / 2}px)`;
     return {
       width: props.item.width,
       height: props.item.height,
@@ -81,12 +79,13 @@ export default class DragPreviewLayer extends Component {
   componentWillReceiveProps(nextProps) {
     switch (nextProps.itemType) {
       case dragItemTypes.SECTION: {
-        const PrevComponent = this.getItemPreviewer(
-          nextProps.item.type,
-          nextProps.item
-        );
-        if (PrevComponent !== null)
-          this.PrevComponent = <PrevComponent index={nextProps.item.index} />;
+        if (nextProps.item.index !== (this.props.item || {}).index) {
+          console.log(nextProps);
+          let PrevComponent = this.getItemPreviewer(nextProps.item.type);
+          if (PrevComponent !== null) {
+            this.PrevComponent = <PrevComponent index={nextProps.item.index} />;
+          }
+        }
         break;
       }
       default:

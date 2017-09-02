@@ -2,33 +2,38 @@ import { findDOMNode } from "react-dom";
 import { BUILDER_PADDING_TOP } from "../../const";
 
 function getPlaceholderIndex(section, yPos, builder) {
-  let placeholderIndex = -1;
+  const nSections = builder.sectionNodes.length;
+  let placeholderIndex = 0;
   let deltaY = yPos - BUILDER_PADDING_TOP - section.height / 2;
-  const numOfSection = builder.sectionNodes.length;
-  for (var i = 0; i < numOfSection; i++) {
-    if (i !== section.index && deltaY >= builder.sectionNodes[i].height) {
-      deltaY -= builder.sectionNodes[i].height;
+
+  builder.sectionNodes.forEach((element, index) => {
+    if (index != section.index && deltaY > element.height / 2) {
+      deltaY -= element.height;
       placeholderIndex += 1;
     }
-  }
+  });
   return placeholderIndex;
 }
 
 export default {
   drop(props, monitor, component) {
-    const section = monitor.getItem();
+    const { placeholderIndex } = component.state;
+    const { index } = monitor.getItem();
+    if (index != placeholderIndex) {
+      props.moveSection(index, placeholderIndex);
+    }
   },
   hover(props, monitor, component) {
     const section = monitor.getItem();
-    const placeholderIndex = getPlaceholderIndex(
+    let placeholderIndex = getPlaceholderIndex(
       section,
       monitor.getClientOffset().y,
       component
     );
     if (component.state.placeholderIndex != placeholderIndex) {
-      console.log(placeholderIndex);
       component.setState({
         placeholderIndex,
+        draggingIndex: section.index,
         placeholderHeight: section.height + 2
       });
     }

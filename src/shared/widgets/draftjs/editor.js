@@ -22,7 +22,6 @@ class DraftJsEditor extends Component {
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
   handleDrop(...props) {
-    console.log(props);
     return "handled";
   }
   handleKeyCommand(command) {

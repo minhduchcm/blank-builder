@@ -33,6 +33,7 @@ class Builder extends Component {
   sectionNodes = [];
   sectionRefs = [];
   componentDidUpdate() {
+    this.sectionRefs.length = this.props.nbSections;
     this.sectionNodes = this.sectionRefs.map(ref => {
       const boundingClientRect = findDOMNode(ref).getBoundingClientRect();
       return boundingClientRect;
@@ -73,13 +74,10 @@ class Builder extends Component {
       isOver,
       canDrop
     } = this.props;
-    const { placeholderIndex } = this.state;
+    const { placeholderIndex, draggingIndex } = this.state;
 
     let cardList = [];
     let builderItems = [];
-    if (isOver && canDrop && placeholderIndex === -1)
-      builderItems.push(this.renderPlaceHolder());
-
     sections.forEach((section, index) => {
       builderItems.push(
         <div key={index} className={"row"}>
@@ -99,9 +97,16 @@ class Builder extends Component {
           <AddWidgetLine index={index + 1} />
         </div>
       );
-      if (isOver && canDrop && index === placeholderIndex)
-        builderItems.push(this.renderPlaceHolder());
     });
+    if (isOver && canDrop) {
+      builderItems.splice(
+        placeholderIndex > draggingIndex
+          ? placeholderIndex + 1
+          : placeholderIndex,
+        0,
+        this.renderPlaceHolder()
+      );
+    }
     return (
       <ViewportWrapper>
         {connectDropTarget(
