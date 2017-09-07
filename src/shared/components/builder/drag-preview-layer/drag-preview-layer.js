@@ -63,7 +63,9 @@ export default class DragPreviewLayer extends Component {
       y += initialOffset.y;
     }
 
-    const transform = `translate(0px, ${y + 11 - props.item.height / 2}px)`;
+    const transform = `translate(0px, ${y -
+      BUILDER_OFFSET_HEIGHT -
+      props.item.height / 2}px)`;
     return {
       width: props.item.width,
       height: props.item.height,

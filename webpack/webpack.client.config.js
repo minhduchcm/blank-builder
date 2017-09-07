@@ -10,6 +10,7 @@ const nodeEnv = process.env.NODE_ENV || "development";
 const isProduction = nodeEnv === "production";
 
 const sourcePath = path.join(__dirname, "../src/client");
+const sharedPath = path.join(__dirname, "../src/shared");
 const buildPath = path.join(__dirname, "../build/client");
 const imgPaths = [path.join(__dirname, "../src")];
 
@@ -225,7 +226,11 @@ module.exports = {
       ".js",
       ".jsx"
     ],
-    modules: [path.resolve(__dirname, "../node_modules"), sourcePath],
+    modules: [
+      path.resolve(__dirname, "../node_modules"),
+      sourcePath,
+      sharedPath
+    ],
     alias: {}
   },
   plugins,

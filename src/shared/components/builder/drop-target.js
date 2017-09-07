@@ -4,7 +4,7 @@ import { BUILDER_PADDING_TOP } from "../../const";
 function getPlaceholderIndex(section, yPos, builder) {
   const nSections = builder.sectionNodes.length;
   let placeholderIndex = 0;
-  let deltaY = yPos - BUILDER_PADDING_TOP - section.height / 2;
+  let deltaY = yPos - 80 - section.height / 2;
 
   builder.sectionNodes.forEach((element, index) => {
     if (index != section.index && deltaY > element.height / 2) {
