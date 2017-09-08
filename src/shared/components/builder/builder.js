@@ -18,6 +18,7 @@ class Builder extends Component {
     addSection: PropTypes.func.isRequired,
     moveSection: PropTypes.func.isRequired,
     deleteSection: PropTypes.func.isRequired,
+    selectSection: PropTypes.func.isRequired,
     setSectionData: PropTypes.func.isRequired,
     nbSections: PropTypes.number.isRequired,
     sections: PropTypes.array.isRequired
@@ -25,11 +26,19 @@ class Builder extends Component {
   static contextTypes = {
     showModal: PropTypes.func.isRequired
   };
+  static childContextTypes = {
+    activeSection: PropTypes.object.isRequired
+  };
   state = {
     placeholderIndex: undefined,
     placeholderHeight: 0,
     isScrolling: false
   };
+  getChildContext() {
+    return {
+      activeSection: this.props.activeSection
+    };
+  }
   sectionNodes = [];
   sectionRefs = [];
   componentDidUpdate() {
@@ -69,6 +78,7 @@ class Builder extends Component {
       sections,
       moveSection,
       deleteSection,
+      selectSection,
       setSectionData,
       connectDropTarget,
       isOver,
@@ -90,6 +100,7 @@ class Builder extends Component {
             }}
             index={index}
             moveSection={moveSection}
+            selectSection={selectSection}
             deleteSection={() => deleteSection(index)}
             setSectionData={data => setSectionData(index, data)}
             {...section}
@@ -110,7 +121,7 @@ class Builder extends Component {
     return (
       <ViewportWrapper>
         {connectDropTarget(
-          <div className={style["builder"]}>
+          <div className={style["builder"]} onClick={() => selectSection()}>
             {nbSections > 0 ? builderItems : this.renderWelcomeSection()}
             <div style={{ height: "150px" }} /> {/*bottom padding section*/}
           </div>

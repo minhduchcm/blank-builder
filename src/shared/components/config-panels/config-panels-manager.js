@@ -1,14 +1,14 @@
+import { Map } from "immutable";
+
 class ConfigPanelsManager {
-  panels = [];
-  constructor() {}
-  register(panels) {
-    this.panels = panels;
-    if (this.panelRootRef) {
-      this.panelRootRef.forceUpdate();
-    }
+  constructor() {
+    this.panels = new Map();
   }
-  get() {
-    return this.panels;
+  register(id, panels) {
+    this.panels = this.panels.setIn([id], panels);
+  }
+  get(id) {
+    return this.panels.getIn([id]);
   }
 }
 

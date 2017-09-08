@@ -43,5 +43,6 @@ if (module.hot) {
     } catch (error) {
       renderError(error);
     }
+    if (console.clear) console.clear();
   });
 }

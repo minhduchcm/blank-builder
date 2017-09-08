@@ -7,15 +7,18 @@ import style from "./root-container.scss";
 
 import { ModalsManager } from "../modals";
 import { SectionTemplatesManager } from "../section";
-import sectionTemplates from "../../section-templates";
+import { ConfigPanelsManager } from "../config-panels";
 
+import sectionTemplates from "../../section-templates";
 import TopNav from "../top-nav";
 import Builder from "../builder";
 import Modals from "../modals";
+import ConfigPanelRoot from "../config-panels";
 
 class RootContainer extends Component {
   constructor(props, context) {
     super(props, context);
+    this.configPanelsManager = new ConfigPanelsManager();
     this.modalsManager = new ModalsManager();
     this.sectionTemplatesManager = new SectionTemplatesManager({
       modalsManager: this.modalsManager
@@ -30,6 +33,7 @@ class RootContainer extends Component {
     showModal: PropTypes.func.isRequired,
     hideModal: PropTypes.func.isRequired,
     modalsManager: PropTypes.object.isRequired,
+    configPanelsManager: PropTypes.object.isRequired,
     sectionTemplatesManager: PropTypes.object.isRequired
   };
   getChildContext() {
@@ -37,7 +41,8 @@ class RootContainer extends Component {
       showModal: this.props.showModal,
       hideModal: this.props.hideModal,
       modalsManager: this.modalsManager,
-      sectionTemplatesManager: this.sectionTemplatesManager
+      sectionTemplatesManager: this.sectionTemplatesManager,
+      configPanelsManager: this.configPanelsManager
     };
   }
   render() {
@@ -46,6 +51,7 @@ class RootContainer extends Component {
         <TopNav />
         <Builder />
         <Modals />
+        <ConfigPanelRoot />
         <ReactTooltip effect="solid" />
       </div>
     );

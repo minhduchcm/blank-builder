@@ -11,6 +11,7 @@ class Row extends Component {
     type: PropTypes.string.isRequired,
     moveSection: PropTypes.func.isRequired,
     deleteSection: PropTypes.func.isRequired,
+    selectSection: PropTypes.func.isRequired,
     setSectionData: PropTypes.func.isRequired,
     connectDragSource: PropTypes.func.isRequired
   };
@@ -25,7 +26,7 @@ class Row extends Component {
 
   renderMoveHandler() {
     return (
-      <div className={style["handle"]}>
+      <div className={style["handle"]} data-tip="Hell">
         <div className={"icon icon-move"} />
       </div>
     );
@@ -54,7 +55,9 @@ class Row extends Component {
       >
         {connectDragSource(this.renderMoveHandler())}
         <template.editor
+          id={this.props.id}
           {...this.props.data}
+          selectSection={this.props.selectSection}
           setSectionData={this.props.setSectionData}
         />
         {this.renderDeleteHandle()}

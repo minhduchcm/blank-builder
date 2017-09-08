@@ -4,8 +4,9 @@ export const CHANGE_VIEWPORT = "@Viewport/CHANGE_VIEWPORT";
 
 export const TOOGLE_TOP_NAV = "@TopNav/TOOGLE";
 
-export const ADD_SECTION = "@Builder/ADD_ROW";
-export const MOVE_SECTION = "@Builder/MOVE_ROW";
+export const ADD_SECTION = "@Builder/ADD_SECTION";
+export const MOVE_SECTION = "@Builder/MOVE_SECTION";
+export const SELECT_SECTION = "@Builder/SELECT_SECTION";
 export const DELETE_SECTION = "@Builder/DELETE_SECTION";
 export const SET_SECTION_DATA = "@Builder/SET_SECTION_DATA";
 export const BUILDER_OFFSET_HEIGHT = 35;

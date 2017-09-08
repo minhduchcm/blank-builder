@@ -9,14 +9,16 @@ import {
   addSection,
   moveSection,
   setSectionData,
-  deleteSection
+  deleteSection,
+  selectSection
 } from "../../actions/builder";
 
 function mapStateToProps(state) {
   let sections = state.getIn(["builder", "sections"]);
   return {
     nbSections: sections.count(),
-    sections: sections.toJS()
+    sections: sections.toJS(),
+    activeSection: state.getIn(["builder", "activeSection"]).toJS()
   };
 }
 
@@ -24,7 +26,8 @@ export default connect(mapStateToProps, {
   addSection,
   moveSection,
   setSectionData,
-  deleteSection
+  deleteSection,
+  selectSection
 })(
   DragDropContext(HTML5Backend)(
     DropTarget(

@@ -1,7 +1,44 @@
+@import "variables";
+
 .config-panel-root {
   z-index: 300;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 0;
+}
+.tab-panel {
+  display: flex;
+  .tab-header {
+    li {
+      font-size: 20pt;
+      height: 40px;
+      width: 40px;
+      background-color: #{$light-gray};
+
+      &:hover {
+        background-color: #{$gray};
+        color: #{$white};
+      }
+    }
+  }
+
+  .tab-body {
+    flex-grow: 1;
+    background-color: #{$dark};
+    max-height: 500px;
+    min-height: 350px;
+    width: 300px;
+    h2 {
+      text-align: center;
+      padding: 13px;
+      color: #{$white};
+      font-size: 10pt;
+      font-weight: bold;
+    }
+    hr {
+      margin: 5px 20px;
+      border-top: 1px solid #{$light-gray};
+    }
+  }
 }
