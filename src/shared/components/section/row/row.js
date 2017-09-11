@@ -56,6 +56,7 @@ class Row extends Component {
         {connectDragSource(this.renderMoveHandler())}
         <template.editor
           id={this.props.id}
+          index={this.props.index}
           {...this.props.data}
           selectSection={this.props.selectSection}
           setSectionData={this.props.setSectionData}

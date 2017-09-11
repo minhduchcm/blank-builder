@@ -160,3 +160,9 @@
 :global(.icon-library):before {
   content: "\e022";
 }
+:global(.icon-animation)::before {
+  content: "\e00b";
+}
+:global(.icon-link-to)::before {
+  content: "\e00c";
+}

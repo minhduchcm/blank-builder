@@ -38,11 +38,21 @@ class ComponentEditor extends Component {
   componentDidMount() {
     this.context.configPanelsManager.register(
       this.props.id + "title",
-      createConfigPanels(this.props.title, this.refs.title)
+      createConfigPanels(
+        this.props.index,
+        "title",
+        this.props.title,
+        this.refs.title
+      )
     );
     this.context.configPanelsManager.register(
       this.props.id + "content",
-      createConfigPanels(this.props.content, this.refs.content)
+      createConfigPanels(
+        this.props.index,
+        "content",
+        this.props.content,
+        this.refs.content
+      )
     );
   }
 

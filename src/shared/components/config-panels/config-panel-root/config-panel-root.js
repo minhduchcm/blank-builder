@@ -9,10 +9,12 @@ class ConfigPanelRoot extends Component {
   static contextTypes = {
     configPanelsManager: PropTypes.object.isRequired
   };
-  static propTypes = {};
+  static propTypes = {
+    setSectionData: PropTypes.func.isRequired
+  };
   render() {
     const { id, childWidget } = this.props;
-    if (!id) return null;
+    if (!id) return <div key="config-panel-root" />;
     const { configPanelsManager } = this.context;
     const index = id + (childWidget || "");
     const configs = configPanelsManager.get(index);
@@ -43,13 +45,14 @@ class ConfigPanelRoot extends Component {
             {activePanel.title}
           </h2>
           <hr />
+          <Body setSectionData={this.props.setSectionData} />
         </div>
       );
     };
-    const ConfigTabPanels = TabPanels({ index, Header, Panels });
+    const ConfigTabPanels = TabPanels({ id: index, Header, Panels });
     return (
-      <div className={style["config-panel-root"]}>
-        <ConfigTabPanels className={style["tab-panel"]} />
+      <div key="config-panel-root" className={style["config-panel-root"]}>
+        <ConfigTabPanels key={index} className={style["tab-panel"]} />
       </div>
     );
   }

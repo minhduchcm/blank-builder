@@ -27,10 +27,12 @@
     flex-grow: 1;
     background-color: #{$dark};
     max-height: 500px;
-    min-height: 350px;
+    min-height: 150px;
     width: 300px;
+    text-align: center;
+    transition: height 0.5s ease;
+
     h2 {
-      text-align: center;
       padding: 13px;
       color: #{$white};
       font-size: 10pt;
