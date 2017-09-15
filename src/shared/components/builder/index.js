@@ -4,7 +4,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 import Builder from "./builder";
 import dropTarget from "./drop-target";
 import { dragItemTypes } from "../../const";
-
+import values from "lodash/values";
 import {
   addSection,
   moveSection,
@@ -14,10 +14,12 @@ import {
 } from "../../actions/builder";
 
 function mapStateToProps(state) {
-  let sections = state.getIn(["builder", "sections"]);
+  let sections = values(state.getIn(["builder", "sections"]).toJS()).sort(
+    (a, b) => a.index > b.index
+  );
   return {
-    nbSections: sections.count(),
-    sections: sections.toJS(),
+    nbSections: sections.length,
+    sections: sections,
     activeSection: state.getIn(["builder", "activeSection"]).toJS()
   };
 }

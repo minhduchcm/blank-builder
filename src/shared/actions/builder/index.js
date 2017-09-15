@@ -22,7 +22,6 @@ export function deleteSection(index) {
   return { type: DELETE_SECTION, index };
 }
 
-export function setSectionData(index, data) {
-  console.log(index, data);
-  return { type: SET_SECTION_DATA, index, data };
+export function setSectionData(id, data) {
+  return { type: SET_SECTION_DATA, id, data };
 }

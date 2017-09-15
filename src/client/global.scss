@@ -18,6 +18,10 @@
 :global(strong) {
   font-weight: bold;
 }
+:global(em) {
+  font-style: italic;
+}
+
 :global(ol),
 :global(ul) {
   list-style: none;

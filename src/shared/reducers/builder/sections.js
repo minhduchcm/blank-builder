@@ -7,26 +7,49 @@ import {
 } from "../../const";
 import { v4 as uuid } from "uuid";
 
-export default (state = fromJS([]), action) => {
+export default (state = fromJS({}), action) => {
   switch (action.type) {
     case ADD_SECTION:
-      return state.insert(
-        action.index,
-        fromJS({
-          id: uuid(),
-          type: action.templateType,
-          data: action.templateData
+      const section = {
+        id: uuid(),
+        index: action.index,
+        type: action.templateType,
+        data: action.templateData
+      };
+      return state
+        .map(section => {
+          const index = section.get("index");
+          if (index >= action.index) return section.set("index", index + 1);
+          return section;
         })
-      );
+        .set(section.id, fromJS(section));
     case MOVE_SECTION: {
-      let row = state.get(action.index);
-      return state.delete(action.index).insert(action.toindex, row);
+      if (action.index < action.toindex)
+        return state.map(section => {
+          let index = section.get("index");
+          if (index == action.index)
+            return section.set("index", action.toindex);
+          else if (index > action.index && index <= action.toindex)
+            return section.set("index", index - 1);
+          return section;
+        });
+      else
+        return state.map(section => {
+          let index = section.get("index");
+          if (index == action.index)
+            return section.set("index", action.toindex);
+          else if (index >= action.toindex && index < action.index)
+            return section.set("index", index + 1);
+          return section;
+        });
+      // let row = state.get(action.index);
+      // return state.delete(action.index).insert(action.toindex, row);
     }
     case DELETE_SECTION: {
       return state.delete(action.index);
     }
     case SET_SECTION_DATA: {
-      return state.update(action.index, value => {
+      return state.update(action.id, value => {
         return value.mergeDeep(fromJS({ data: action.data }));
       });
     }

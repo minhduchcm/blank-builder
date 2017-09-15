@@ -28,31 +28,55 @@ class ComponentEditor extends Component {
   onContentChange(data) {
     this.props.setSectionData({ content: { contentState: data } });
   }
+  getAlignment(alignment) {
+    switch (alignment) {
+      case "left":
+      case "right":
+      case "center":
+        return { textAlign: alignment };
+      case "justify-l":
+        return { textAlign: "justify" };
+      case "justify-c":
+        return { textAlign: "justify", textAlignLast: "center" };
+      case "justify-r":
+        return { textAlign: "justify", textAlignLast: "right" };
+    }
+  }
+  getFontSize(fontType) {
+    switch (fontType) {
+      case "big-heading":
+        return { fontSize: 28 };
+      case "heading":
+        return { fontSize: 24 };
+      case "quote":
+        return {
+          fontSize: 14,
+          fontStyle: "italic"
+        };
+      default:
+        return {
+          fontSize: 16,
+          fontFamily: "Arial"
+        };
+    }
+  }
   getDraftJsStyle(props) {
     return {
-      fontFamily: props.fontFamily,
-      fontSize: props.fontSize,
-      textAlign: props.alignment
+      ...this.getFontSize(props.fontType),
+      ...this.getAlignment(props.alignment)
     };
   }
   componentDidMount() {
     this.context.configPanelsManager.register(
       this.props.id + "title",
-      createConfigPanels(
-        this.props.index,
-        "title",
-        this.props.title,
-        this.refs.title
-      )
+      createConfigPanels(this.props.id, { name: "title", ref: this.refs.title })
     );
     this.context.configPanelsManager.register(
       this.props.id + "content",
-      createConfigPanels(
-        this.props.index,
-        "content",
-        this.props.content,
-        this.refs.content
-      )
+      createConfigPanels(this.props.id, {
+        name: "content",
+        ref: this.refs.content
+      })
     );
   }
 

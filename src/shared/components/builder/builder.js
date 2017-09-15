@@ -89,25 +89,26 @@ class Builder extends Component {
     let cardList = [];
     let builderItems = [];
     sections.forEach((section, index) => {
-      builderItems.push(
-        <div key={index} className={"row"}>
-          {index === 0 ? <AddWidgetLine index={index} /> : null}
-          <Section
-            ref={ref => {
-              if (ref) {
-                this.sectionRefs[index] = ref;
-              }
-            }}
-            index={index}
-            moveSection={moveSection}
-            selectSection={selectSection}
-            deleteSection={() => deleteSection(index)}
-            setSectionData={data => setSectionData(index, data)}
-            {...section}
-          />
-          <AddWidgetLine index={index + 1} />
-        </div>
-      );
+      if (section)
+        builderItems.push(
+          <div key={section.id} className={"row"}>
+            {index === 0 ? <AddWidgetLine index={section.index} /> : null}
+            <Section
+              ref={ref => {
+                if (ref) {
+                  this.sectionRefs[section.index] = ref;
+                }
+              }}
+              index={section.index}
+              moveSection={moveSection}
+              selectSection={selectSection}
+              deleteSection={() => deleteSection(section.id)}
+              setSectionData={data => setSectionData(section.id, data)}
+              {...section}
+            />
+            <AddWidgetLine index={index + 1} />
+          </div>
+        );
     });
     if (isOver && canDrop) {
       builderItems.splice(

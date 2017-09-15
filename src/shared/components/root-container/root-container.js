@@ -56,6 +56,9 @@ class RootContainer extends Component {
       </div>
     );
   }
+  componentDidUpdate = (prevProps, prevState) => {
+    ReactTooltip.rebuild();
+  };
 }
 
 export default RootContainer;

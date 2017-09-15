@@ -25,6 +25,7 @@ class Paragraph extends Component {
     const contentString = stateToHTML(
       convertFromRaw(this.props.data.content.contentState)
     );
+    console.log(titleString);
     return (
       <div className={"section paragraph"}>
         <h1
@@ -42,7 +43,7 @@ class Paragraph extends Component {
 
 function mapStateToProps(state, ownerProps) {
   return {
-    ...state.getIn(["builder", "sections", ownerProps.index]).toJS()
+    ...state.getIn(["builder", "sections", ownerProps.id]).toJS()
   };
 }
 export default connect(mapStateToProps)(Paragraph);

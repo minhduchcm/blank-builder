@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { getEmptyImage } from "react-dnd-html5-backend";
+import ReactToolTip from "react-tooltip";
 import style from "./row.scss";
 
 class Row extends Component {
@@ -26,7 +27,7 @@ class Row extends Component {
 
   renderMoveHandler() {
     return (
-      <div className={style["handle"]} data-tip="Hell">
+      <div className={style["handle"]}>
         <div className={"icon icon-move"} />
       </div>
     );
@@ -37,7 +38,7 @@ class Row extends Component {
         className={`${style["handle"]} ${style["right"]}`}
         onClick={this.props.deleteSection}
       >
-        <div className={"icon icon-delete"} />
+        <div className={"icon icon-delete"} data-tip="Delete" />
       </div>
     );
   }
@@ -65,6 +66,9 @@ class Row extends Component {
       </div>
     );
   }
+  componentDidUpdate = (prevProps, prevState) => {
+    ReactToolTip.rebuild();
+  };
 }
 
 export default Row;

@@ -82,10 +82,9 @@ export default class DragPreviewLayer extends Component {
     switch (nextProps.itemType) {
       case dragItemTypes.SECTION: {
         if (nextProps.item.index !== (this.props.item || {}).index) {
-          console.log(nextProps);
           let PrevComponent = this.getItemPreviewer(nextProps.item.type);
           if (PrevComponent !== null) {
-            this.PrevComponent = <PrevComponent index={nextProps.item.index} />;
+            this.PrevComponent = <PrevComponent id={nextProps.item.id} />;
           }
         }
         break;
