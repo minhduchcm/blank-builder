@@ -103,7 +103,8 @@ class Builder extends Component {
               moveSection={moveSection}
               selectSection={selectSection}
               deleteSection={() => deleteSection(section.id)}
-              setSectionData={data => setSectionData(section.id, data)}
+              setSectionData={(updatePath, data) =>
+                setSectionData(section.id, updatePath, data)}
               {...section}
             />
             <AddWidgetLine index={index + 1} />
@@ -120,9 +121,9 @@ class Builder extends Component {
       );
     }
     return (
-      <ViewportWrapper>
+      <ViewportWrapper onClick={() => selectSection()}>
         {connectDropTarget(
-          <div className={style["builder"]} onClick={() => selectSection()}>
+          <div className={style["builder"]}>
             {nbSections > 0 ? builderItems : this.renderWelcomeSection()}
             <div style={{ height: "150px" }} /> {/*bottom padding section*/}
           </div>

@@ -25,7 +25,6 @@ class Paragraph extends Component {
     const contentString = stateToHTML(
       convertFromRaw(this.props.data.content.contentState)
     );
-    console.log(titleString);
     return (
       <div className={"section paragraph"}>
         <h1

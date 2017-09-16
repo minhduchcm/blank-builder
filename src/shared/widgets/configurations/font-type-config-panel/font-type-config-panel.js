@@ -9,9 +9,11 @@ export default class FontTypeConfigPanel extends Component {
   setFontType = (e, fontType) => {
     e.stopPropagation();
     e.preventDefault();
-    this.props.setSectionData(this.props.id, {
-      [this.props.name]: { fontType: fontType }
-    });
+    this.props.setSectionData(
+      this.props.id,
+      [this.props.name, "fontType"],
+      fontType
+    );
   };
   render() {
     return (

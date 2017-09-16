@@ -23,10 +23,10 @@ class ComponentEditor extends Component {
     this.onContentChange = this.onContentChange.bind(this);
   }
   onTitleChange(data) {
-    this.props.setSectionData({ title: { contentState: data } });
+    this.props.setSectionData(["title", "contentState"], data);
   }
   onContentChange(data) {
-    this.props.setSectionData({ content: { contentState: data } });
+    this.props.setSectionData(["content", "contentState"], data);
   }
   getAlignment(alignment) {
     switch (alignment) {
@@ -40,6 +40,18 @@ class ComponentEditor extends Component {
         return { textAlign: "justify", textAlignLast: "center" };
       case "justify-r":
         return { textAlign: "justify", textAlignLast: "right" };
+    }
+  }
+  getFontStyle(fontStyle) {
+    switch (fontStyle) {
+      case "uppercase":
+        return { textTransform: "uppercase" };
+      case "lowercase":
+        return { textTransform: "lowercase" };
+      case "capitalize":
+        return { textTransform: "capitalize" };
+      default:
+        return {};
     }
   }
   getFontSize(fontType) {
@@ -62,6 +74,7 @@ class ComponentEditor extends Component {
   }
   getDraftJsStyle(props) {
     return {
+      ...this.getFontStyle(props.fontStyle),
       ...this.getFontSize(props.fontType),
       ...this.getAlignment(props.alignment)
     };

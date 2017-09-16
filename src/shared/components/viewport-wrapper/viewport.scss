@@ -3,15 +3,18 @@
 .viewport {
   flex-grow: 1;
   position: relative;
-  margin: -1px auto;
   width: calc(100% - 2px);
   height: 100%;
   overflow: hidden;
-  border: 1px solid #{$light-gray};
-  &.mobile {
-    max-width: 414px;
-  }
-  &.tablet {
-    max-width: 992px;
+  .wrapper {
+    position: relative;
+    margin: -1px auto;
+    border: 1px solid #{$light-gray};
+    &.mobile {
+      max-width: 414px;
+    }
+    &.tablet {
+      max-width: 992px;
+    }
   }
 }

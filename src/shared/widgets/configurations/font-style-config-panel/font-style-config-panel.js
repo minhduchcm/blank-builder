@@ -8,18 +8,24 @@ export default class FontStyleConfigPanel extends Component {
     editorRef: PropTypes.object.isRequired,
     id: PropTypes.string.isRequired
   };
-  toogleInlineStyle(e, command) {
+  toogleInlineStyle = (e, command) => {
     e.stopPropagation();
     e.preventDefault();
     try {
       this.props.editorRef.handleKeyCommand(command);
     } catch (e) {}
-  }
+  };
+  setFontStyle = (e, style) => {
+    this.props.setSectionData(
+      this.props.id,
+      [this.props.name, "fontStyle"],
+      this.props.fontStyle === style ? "none" : style
+    );
+  };
   render() {
     return (
       <ul className={style["container"]}>
         <li
-          className={style["active"]}
           onMouseDown={e => {
             this.toogleInlineStyle(e, "bold");
           }}
@@ -27,7 +33,6 @@ export default class FontStyleConfigPanel extends Component {
           <div className={"icon icon-bold"} />
         </li>
         <li
-          className={style["active"]}
           onMouseDown={e => {
             this.toogleInlineStyle(e, "italic");
           }}
@@ -35,20 +40,34 @@ export default class FontStyleConfigPanel extends Component {
           <div className={"icon icon-italic"} />
         </li>
         <li
-          className={style["active"]}
           onMouseDown={e => {
             this.toogleInlineStyle(e, "underline");
           }}
         >
           <div className={"icon icon-underline"} />
         </li>
-        <li>
+        <li
+          onClick={e => this.setFontStyle(e, "uppercase")}
+          className={classnames({
+            [style["active"]]: this.props.fontStyle === "uppercase"
+          })}
+        >
           <div className={"icon icon-uppercase"} />
         </li>
-        <li>
+        <li
+          onClick={e => this.setFontStyle(e, "titlecase")}
+          className={classnames({
+            [style["active"]]: this.props.fontStyle === "titlecase"
+          })}
+        >
           <div className={"icon icon-titlecase"} />
         </li>
-        <li>
+        <li
+          onClick={e => this.setFontStyle(e, "lowercase")}
+          className={classnames({
+            [style["active"]]: this.props.fontStyle === "lowercase"
+          })}
+        >
           <div className={"icon icon-lowercase"} />
         </li>
       </ul>

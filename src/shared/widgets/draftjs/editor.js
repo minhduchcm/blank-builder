@@ -19,12 +19,13 @@ class DraftJsEditor extends Component {
     };
 
     this.handleEditorChange = this.handleEditorChange.bind(this);
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    // this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
   handleDrop(...props) {
     return "handled";
   }
-  handleKeyCommand(command) {
+  handleKeyCommand = command => {
+    console.log(command);
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -32,7 +33,7 @@ class DraftJsEditor extends Component {
       return "handled";
     }
     return "not-handled";
-  }
+  };
 
   handleEditorChange(editorState) {
     const currentContent = this.state.editorState.getCurrentContent();

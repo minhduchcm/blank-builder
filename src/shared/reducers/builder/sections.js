@@ -49,9 +49,10 @@ export default (state = fromJS({}), action) => {
       return state.delete(action.index);
     }
     case SET_SECTION_DATA: {
-      return state.update(action.id, value => {
-        return value.mergeDeep(fromJS({ data: action.data }));
-      });
+      return state.setIn(
+        [action.id, "data", ...action.updatePath],
+        fromJS(action.data)
+      );
     }
     default:
       return state;
