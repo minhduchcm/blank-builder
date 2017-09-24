@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve("build/client/index.html"));
 });
 
+//80
 app.listen(config.PORT, err => {
   if (err) {
     throw err;

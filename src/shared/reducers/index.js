@@ -4,5 +4,13 @@ import modals from "./modals";
 import viewport from "./viewport";
 import tabPanel from "./tab-panel";
 import builder from "./builder";
+import configPanel from "./config-panel";
 
-export default combineReducers({ topNav, viewport, modals, tabPanel, builder });
+export default combineReducers({
+  topNav,
+  viewport,
+  modals,
+  tabPanel,
+  configPanel,
+  builder
+});

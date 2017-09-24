@@ -25,8 +25,13 @@ class DraftJsEditor extends Component {
     return "handled";
   }
   handleKeyCommand = command => {
-    console.log(command);
-    const { editorState } = this.state;
+    var selectionState = this.state.editorState.getSelection();
+    var start = selectionState.getStartOffset();
+    var end = selectionState.getEndOffset();
+    var { editorState } = this.state;
+    if (start === end) {
+      return "handled";
+    }
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       this.handleEditorChange(newState);
@@ -50,32 +55,48 @@ class DraftJsEditor extends Component {
   }
 
   createEditorState(props, selection) {
-    let contentState = EditorState.createWithContent(
+    let editorState = EditorState.createWithContent(
       convertFromRaw(props.contentState)
     );
     return EditorState.acceptSelection(
-      contentState,
+      editorState,
       selection || SelectionState.createEmpty()
     );
   }
 
   componentWillReceiveProps(nextProps) {
+    let contentState = convertFromRaw(nextProps.contentState);
     this.setState({
-      editorState: this.createEditorState(nextProps, this.selection)
+      editorState: EditorState.acceptSelection(
+        EditorState.push(this.state.editorState, contentState),
+        this.selection || SelectionState.createEmpty()
+      )
     });
   }
 
   render() {
+    var animation = "";
+    var inlineStyle = {};
+    if (this.props.animation.event !== "none") {
+      const { event, type, duration, delay } = this.props.animation;
+      animation = ` ${event}-${type}`;
+      inlineStyle.transitionDuration = duration + "ms";
+      inlineStyle.transitionDelay = delay + "ms";
+    }
     return (
-      <Editor
-        className={this.props.className}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        editorState={this.state.editorState}
-        onChange={this.handleEditorChange}
-        handleKeyCommand={this.handleKeyCommand}
-        handleDrop={this.handleDrop}
-      />
+      <div
+        className={this.props.className || "" + animation}
+        style={inlineStyle}
+      >
+        <Editor
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+          editorState={this.state.editorState}
+          onChange={this.handleEditorChange}
+          handleKeyCommand={this.handleKeyCommand}
+          handleDrop={this.handleDrop}
+        />
+      </div>
     );
   }
 }

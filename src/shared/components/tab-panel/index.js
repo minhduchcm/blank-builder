@@ -10,12 +10,14 @@ export default function TabPanel({ id = uuid(), Header, Panels }) {
     render() {
       const { className, selectTab, activeTab, ...bodyProps } = this.props;
       return (
-        <div className={className}>
+        <div className={className} key={id}>
           <Header
+            key={id + "-header"}
             selectTab={tabIndex => selectTab(id, tabIndex)}
             activeTab={activeTab}
           />
-          <Panels activeTab={activeTab} {...bodyProps} />
+
+          <Panels key={id + "-panel"} activeTab={activeTab} {...bodyProps} />
         </div>
       );
     }

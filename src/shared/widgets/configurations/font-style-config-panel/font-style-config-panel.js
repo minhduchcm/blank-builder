@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import style from "./style.scss";
+import style from "./font-style-config-panel.scss";
 
 export default class FontStyleConfigPanel extends Component {
   static propTypes = {
@@ -16,6 +16,8 @@ export default class FontStyleConfigPanel extends Component {
     } catch (e) {}
   };
   setFontStyle = (e, style) => {
+    e.stopPropagation();
+    e.preventDefault();
     this.props.setSectionData(
       this.props.id,
       [this.props.name, "fontStyle"],
@@ -23,12 +25,26 @@ export default class FontStyleConfigPanel extends Component {
     );
   };
   render() {
+    let isBold = false;
+    let isItalic = false;
+    let isUnderline = false;
+    try {
+      var inlineStyles = this.props.editorRef.state.editorState
+        .getCurrentInlineStyle()
+        .toJS();
+      isBold = inlineStyles.indexOf("BOLD") > -1;
+      isItalic = inlineStyles.indexOf("ITALIC") > -1;
+      isUnderline = inlineStyles.indexOf("UNDERLINE") > -1;
+    } catch (error) {}
     return (
       <ul className={style["container"]}>
         <li
           onMouseDown={e => {
             this.toogleInlineStyle(e, "bold");
           }}
+          className={classnames({
+            [style["active"]]: isBold
+          })}
         >
           <div className={"icon icon-bold"} />
         </li>
@@ -36,6 +52,9 @@ export default class FontStyleConfigPanel extends Component {
           onMouseDown={e => {
             this.toogleInlineStyle(e, "italic");
           }}
+          className={classnames({
+            [style["active"]]: isItalic
+          })}
         >
           <div className={"icon icon-italic"} />
         </li>
@@ -43,11 +62,14 @@ export default class FontStyleConfigPanel extends Component {
           onMouseDown={e => {
             this.toogleInlineStyle(e, "underline");
           }}
+          className={classnames({
+            [style["active"]]: isUnderline
+          })}
         >
           <div className={"icon icon-underline"} />
         </li>
         <li
-          onClick={e => this.setFontStyle(e, "uppercase")}
+          onMouseDown={e => this.setFontStyle(e, "uppercase")}
           className={classnames({
             [style["active"]]: this.props.fontStyle === "uppercase"
           })}
@@ -55,7 +77,7 @@ export default class FontStyleConfigPanel extends Component {
           <div className={"icon icon-uppercase"} />
         </li>
         <li
-          onClick={e => this.setFontStyle(e, "titlecase")}
+          onMouseDown={e => this.setFontStyle(e, "titlecase")}
           className={classnames({
             [style["active"]]: this.props.fontStyle === "titlecase"
           })}
@@ -63,7 +85,7 @@ export default class FontStyleConfigPanel extends Component {
           <div className={"icon icon-titlecase"} />
         </li>
         <li
-          onClick={e => this.setFontStyle(e, "lowercase")}
+          onMouseDown={e => this.setFontStyle(e, "lowercase")}
           className={classnames({
             [style["active"]]: this.props.fontStyle === "lowercase"
           })}

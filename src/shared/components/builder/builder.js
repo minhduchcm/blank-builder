@@ -43,10 +43,16 @@ class Builder extends Component {
   sectionRefs = [];
   componentDidUpdate() {
     this.sectionRefs.length = this.props.nbSections;
-    this.sectionNodes = this.sectionRefs.map(ref => {
-      const boundingClientRect = findDOMNode(ref).getBoundingClientRect();
-      return boundingClientRect;
-    });
+    this.sectionNodes = this.sectionRefs
+      .map(ref => {
+        try {
+          const boundingClientRect = findDOMNode(ref).getBoundingClientRect();
+          return boundingClientRect;
+        } catch (e) {
+          return null;
+        }
+      })
+      .filter(ref => ref !== null);
   }
 
   renderWelcomeSection() {

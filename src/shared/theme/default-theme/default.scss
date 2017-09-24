@@ -11,3 +11,11 @@
     object-fit: cover;
   }
 }
+
+:global(.hover-fade) {
+  transition: all ease-in;
+
+  &:hover {
+    opacity: 0;
+  }
+}

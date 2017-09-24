@@ -10,7 +10,9 @@ export default class TextAlignConfigPanel extends Component {
   constructor(props, context) {
     super(props, context);
   }
-  updateSectionData(alignment) {
+  updateSectionData(e, alignment) {
+    e.stopPropagation();
+    e.preventDefault();
     const { id, name } = this.props;
     this.props.setSectionData(id, [name, "alignment"], alignment);
   }
@@ -19,13 +21,13 @@ export default class TextAlignConfigPanel extends Component {
     return (
       <ul className={style["container"]}>
         <li
-          onClick={() => this.updateSectionData("left")}
+          onMouseDown={e => this.updateSectionData(e, "left")}
           className={classnames({ [style["active"]]: alignment === "left" })}
         >
           <div className={"icon icon-align-left"} />
         </li>
         <li
-          onClick={() => this.updateSectionData("center")}
+          onMouseDown={e => this.updateSectionData(e, "center")}
           className={classnames({
             [style["active"]]: alignment === "center"
           })}
@@ -33,13 +35,13 @@ export default class TextAlignConfigPanel extends Component {
           <div className={"icon icon-align-center"} />
         </li>
         <li
-          onClick={() => this.updateSectionData("right")}
+          onMouseDown={e => this.updateSectionData(e, "right")}
           className={classnames({ [style["active"]]: alignment === "right" })}
         >
           <div className={"icon icon-align-right"} />
         </li>
         <li
-          onClick={() => this.updateSectionData("justify-l")}
+          onMouseDown={e => this.updateSectionData(e, "justify-l")}
           className={classnames({
             [style["active"]]: alignment === "justify-l"
           })}
@@ -47,7 +49,7 @@ export default class TextAlignConfigPanel extends Component {
           <div className={"icon icon-justify-left"} />
         </li>
         <li
-          onClick={() => this.updateSectionData("justify-c")}
+          onMouseDown={e => this.updateSectionData(e, "justify-c")}
           className={classnames({
             [style["active"]]: alignment === "justify-c"
           })}
@@ -55,7 +57,7 @@ export default class TextAlignConfigPanel extends Component {
           <div className={"icon icon-justify-center"} />
         </li>
         <li
-          onClick={() => this.updateSectionData("justify-r")}
+          onMouseDown={e => this.updateSectionData(e, "justify-r")}
           className={classnames({
             [style["active"]]: alignment === "justify-r"
           })}

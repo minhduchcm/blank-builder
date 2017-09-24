@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 import TabPanels from "../../tab-panel";
 
@@ -12,6 +13,7 @@ class ConfigPanelRoot extends Component {
   static propTypes = {
     setSectionData: PropTypes.func.isRequired
   };
+
   render() {
     const { id, childWidget } = this.props;
     if (!id) return <div key="config-panel-root" />;
@@ -21,10 +23,25 @@ class ConfigPanelRoot extends Component {
     const Header = ({ selectTab, activeTab }) => {
       return (
         <ul className={style["tab-header"]}>
+          <li
+            onMouseDown={e => {
+              e.stopPropagation();
+              e.preventDefault();
+              this.props.changeDock();
+            }}
+          >
+            <div className={`icon icon-move`} />
+          </li>
           {configs.map(panel => {
             return (
               <li
-                onClick={() => selectTab(panel.index)}
+                onMouseDown={e => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}
+                onMouseEnter={e => {
+                  selectTab(panel.index);
+                }}
                 className={activeTab === panel.index ? style["active"] : null}
                 key={panel.index}
               >
@@ -51,7 +68,12 @@ class ConfigPanelRoot extends Component {
     };
     const ConfigTabPanels = TabPanels({ id: index, Header, Panels });
     return (
-      <div key="config-panel-root" className={style["config-panel-root"]}>
+      <div
+        key="config-panel-root"
+        className={classnames(style["config-panel-root"], {
+          [style["right"]]: this.props.dock === "right"
+        })}
+      >
         <ConfigTabPanels key={index} className={style["tab-panel"]} />
       </div>
     );

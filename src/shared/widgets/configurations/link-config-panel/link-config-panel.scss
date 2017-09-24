@@ -1,0 +1,64 @@
+@import "variables";
+
+.container {
+  padding: 10px 20px;
+  .tab-panel {
+    width: 100%;
+
+    .tab-header {
+      margin: 5px 0px;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      li {
+        padding: 5px;
+        color: #{$gray};
+        font-size: 10pt;
+        cursor: pointer;
+        &:hover,
+        &.active {
+          color: #{$white};
+        }
+      }
+    }
+
+    .tab-body {
+      margin: 15px 0px;
+      width: 100%;
+      .href-input {
+        font-size: 10pt;
+        margin: 5px 0px;
+        padding: 5px;
+        color: #{$white};
+        background-color: #{$dark};
+        border: 1px solid #{$gray};
+        width: 100%;
+      }
+    }
+  }
+  .action {
+    margin: 5px 0px;
+    &:after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    button {
+      cursor: pointer;
+      padding: 10px 15px;
+      font-size: 10pt;
+      background-color: #{$dark};
+      float: left;
+      color: #{$gray};
+      border: 1px solid #{$dark};
+    }
+    .right {
+      border: 1px solid #{$gray};
+      color: #{$white};
+      float: right;
+
+      &:hover {
+        border: 1px solid #{$white};
+      }
+    }
+  }
+}

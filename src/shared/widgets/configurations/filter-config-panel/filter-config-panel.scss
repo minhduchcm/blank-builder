@@ -1,0 +1,24 @@
+@import "variables";
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .add-filter-button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #{$gray};
+
+    :global(.icon) {
+      font-size: 15pt;
+      color: #{$white};
+    }
+  }
+
+  h2 {
+    flex-grow: 1;
+    color: #{$gray} !important;
+  }
+}

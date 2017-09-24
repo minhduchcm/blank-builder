@@ -18,10 +18,13 @@ export const CLOSE_MODAL = "@Modal/CLOSE_MODAL";
 
 export const SELECT_TAB = "@TabPanel/SELECT_TAB";
 
+export const CHANGE_CONFIG_PANEL_DOCK = "@ConfigPanel/CHANGE_CONFIG_PANEL_DOCK";
+
 export const modalTypes = {
   EMPTY_MODAL: "@Modal/EMPTY_MODAL",
   ADD_SECTION_MODAL: "@Modal/ADD_SECTION_MODAL",
-  SELECT_IMAGE: "@Modal/SELECT_IMAGE"
+  SELECT_IMAGE: "@Modal/SELECT_IMAGE",
+  SELECT_FILTER_MODAL: "@Modal/SELECT_FILTER_MODAL"
 };
 export const dragItemTypes = { SECTION: "@DragItemTypes/SECTION" };
 export const viewports = {

@@ -6,14 +6,22 @@
   top: 50%;
   transform: translateY(-50%);
   left: 0;
+
+  &.right {
+    left: auto;
+    right: 12px;
+    .tab-panel .tab-body {
+      left: auto;
+      right: 35px;
+    }
+  }
 }
 .tab-panel {
-  display: flex;
   .tab-header {
     li {
       font-size: 20pt;
-      height: 40px;
-      width: 40px;
+      height: 35px;
+      width: 35px;
       background-color: #{$light-gray};
 
       &:hover {
@@ -22,9 +30,16 @@
       }
     }
   }
-
+  &:hover {
+    .tab-body {
+      visibility: visible;
+    }
+  }
   .tab-body {
-    flex-grow: 1;
+    visibility: hidden;
+    position: absolute;
+    left: 35px;
+    top: 0;
     background-color: #{$dark};
     max-height: 500px;
     min-height: 150px;

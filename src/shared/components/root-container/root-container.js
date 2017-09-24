@@ -50,8 +50,8 @@ class RootContainer extends Component {
       <div className={style["container"]}>
         <TopNav />
         <Builder />
-        <Modals />
         <ConfigPanelRoot />
+        <Modals style={{ zIndex: 999 }} />
         <ReactTooltip effect="solid" />
       </div>
     );

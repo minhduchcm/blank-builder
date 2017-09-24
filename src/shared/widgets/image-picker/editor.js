@@ -10,14 +10,14 @@ class ImagePicker extends Component {
     return (
       <div className={style["img-picker"]}>
         <img src={this.props.img} />
-        <div className={style["btn-change-backprop"]}>
+        {/* <div className={style["btn-change-backprop"]}>
           <button
             className={style["btn-change"]}
             onClick={() => showModal(modalTypes.SELECT_IMAGE, {})}
           >
             Change Image
           </button>
-        </div>
+        </div> */}
       </div>
     );
   }

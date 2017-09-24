@@ -3,6 +3,7 @@ class ModalsManager {
     this.register(require("./empty-modal").default);
     this.register(require("./add-section-modal").default);
     this.register(require("./select-image").default);
+    this.register(require("./select-filter").default);
   }
   modals = [];
   register(modal) {
