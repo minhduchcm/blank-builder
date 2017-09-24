@@ -8,14 +8,20 @@ const Box = (
   { transitionClass, style: inlineStyle, modalType, modalProps, stack },
   { modalsManager }
 ) => {
-  const { title, description, component: Body } = modalsManager.get(modalType);
+  const { title, description, size, component: Body } = modalsManager.get(
+    modalType
+  );
   const transform = `translateX(-50%) translateY(${100 *
     (1 - stack)}px) scale(${stack / 4 + 0.75})`;
   const opacity = stack / 2 + 0.5;
   const pointerEvents = stack === 1 ? "all" : "none";
+  var maxWidth = "auto";
+  if (size === "small") {
+    maxWidth = "350px";
+  }
   return (
     <div
-      style={{ transform, opacity, pointerEvents }}
+      style={{ transform, opacity, maxWidth, pointerEvents }}
       className={classnames(style["modal"], style[transitionClass])}
       onClick={e => e.stopPropagation()}
     >

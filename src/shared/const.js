@@ -24,7 +24,8 @@ export const modalTypes = {
   EMPTY_MODAL: "@Modal/EMPTY_MODAL",
   ADD_SECTION_MODAL: "@Modal/ADD_SECTION_MODAL",
   SELECT_IMAGE: "@Modal/SELECT_IMAGE",
-  SELECT_FILTER_MODAL: "@Modal/SELECT_FILTER_MODAL"
+  SELECT_FILTER_MODAL: "@Modal/SELECT_FILTER_MODAL",
+  CHANGE_IMAGE: "@Modal/CHANGE_IMAGE"
 };
 export const dragItemTypes = { SECTION: "@DragItemTypes/SECTION" };
 export const viewports = {

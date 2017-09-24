@@ -4,6 +4,7 @@ class ModalsManager {
     this.register(require("./add-section-modal").default);
     this.register(require("./select-image").default);
     this.register(require("./select-filter").default);
+    this.register(require("./change-image").default);
   }
   modals = [];
   register(modal) {
