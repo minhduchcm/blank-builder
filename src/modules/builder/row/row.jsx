@@ -78,10 +78,11 @@ class Row extends Component {
   };
 
   render() {
-    const { connectDragSource, isDragging, data } = this.props;
+    const { id, connectDragSource, isDragging, data } = this.props;
     const totalWidth = data.width.reduce((s, i) => s + i, 0);
     return this.props.connectDropTarget(
       <div
+        id={id}
         className={style.container}
         style={{ opacity: isDragging ? 0.2 : 1 }}
       >

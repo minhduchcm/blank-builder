@@ -14,7 +14,9 @@ class DragRowPreview extends Component {
 
   render() {
     return this.props.connectDropTarget(
-      <div className={style.rowDragPreview} />
+      <div className={style.rowDragPreview}>
+        <div />
+      </div>
     );
   }
 }

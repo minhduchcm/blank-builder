@@ -3,6 +3,7 @@ export default {
     return row;
   },
   endDrag(row, monitor) {
+    console.log(monitor.didDrop());
     if (monitor.didDrop()) {
       row.moveRow();
     }

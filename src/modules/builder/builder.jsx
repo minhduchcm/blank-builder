@@ -65,9 +65,15 @@ export class Builder extends Component {
             setConfigPanel={this.props.setConfigPanel}
             setPreview={this.setPreview}
             moveRow={() => {
+              if (this.state.preview === -1) return;
               let newIndex = this.state.preview;
               if (index <= this.state.preview) newIndex -= 1;
+              console.log('move');
               this.props.moveRow(index, newIndex);
+              setTimeout(() => {
+                const element = document.getElementById(row.id);
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 10);
             }}
           />,
           <AddWidgetLine key={`post-${row.id}`} index={index + 1} />
