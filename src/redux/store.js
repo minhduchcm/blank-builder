@@ -15,8 +15,10 @@ export function configureStore() {
   const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
   const store = createStore(reducers, fromJS(data), enhancer);
-  module.hot.accept('./modules', () => {
-    store.replaceReducer(require('./modules').default);
-  });
+  if (module.hot) {
+    module.hot.accept('./modules', () => {
+      store.replaceReducer(require('./modules').default);
+    });
+  }  
   return store;
 }

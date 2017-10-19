@@ -54,19 +54,14 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "postinstall": "yarn build",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "dev": "node scripts/dev.js",
     "prebuild": "rimraf build/*"
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "transform-decorators-legacy"
-    ]
+    "presets": ["react-app"],
+    "plugins": ["transform-decorators-legacy"]
   },
   "eslintConfig": {
     "extends": "react-app"

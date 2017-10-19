@@ -17,14 +17,15 @@ render(
   rootEl
 );
 
-module.hot.accept('./modules/root', () => {
-  const Root = require('./modules/root').default;
-  render(
-    <Provider store={store}>
-      <Root />
-    </Provider>,
-    rootEl
-  );
-});
-
+if (module.hot) {
+  module.hot.accept('./modules/root', () => {
+    const Root = require('./modules/root').default;
+    render(
+      <Provider store={store}>
+        <Root />
+      </Provider>,
+      rootEl
+    );
+  });
+}
 registerServiceWorker();
