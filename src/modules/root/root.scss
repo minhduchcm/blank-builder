@@ -1,0 +1,12 @@
+@import 'variables';
+
+.root-container {
+  background-color: #{$white};
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  transform-style: preserve-3d;
+  transform: translateX(0);
+}

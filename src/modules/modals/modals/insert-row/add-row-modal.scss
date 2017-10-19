@@ -1,0 +1,65 @@
+@import 'variables';
+.tab-header {
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  li {
+    float: left;
+    a {
+      cursor: pointer;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: #{$light-gray};
+      padding: 5px 15px;
+      &:hover {
+        color: #{$gray};
+      }
+    }
+    &.active a {
+      color: #{$gray};
+    }
+  }
+}
+.tab-body {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  width: 100%;
+  li {
+    padding: 30px;
+    background-color: #{$light};
+    position: relative;
+    text-align: center;
+    .select-button {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #{rgba($light-gray, 0.7)};
+      a {
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: #{$gray};
+        color: #{$white};
+        padding: 5px 25px;
+        border: 1px solid #{$gray};
+        &:hover {
+          background-color: #{$light};
+          color: #{$gray};
+        }
+      }
+    }
+    &:hover .select-button {
+      visibility: visible;
+    }
+  }
+}

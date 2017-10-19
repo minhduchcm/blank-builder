@@ -1,0 +1,18 @@
+@import 'variables';
+
+:global(.spliter) {
+  padding: 5px;
+  cursor: ew-resize;
+
+  &:hover {
+    div {
+      visibility: visible;
+    }
+  }
+  div {
+    visibility: hidden;
+    width: 1px;
+    height: 100%;
+    background: #{$light-gray};
+  }
+}

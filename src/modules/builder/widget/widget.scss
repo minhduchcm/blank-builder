@@ -1,0 +1,11 @@
+@import 'variables';
+
+.container {
+  height: calc(100% - 20px);
+  border: 1px solid transparent;
+  padding: 10px;
+
+  &:hover {
+    border: 1px solid #{$highlight};
+  }
+}

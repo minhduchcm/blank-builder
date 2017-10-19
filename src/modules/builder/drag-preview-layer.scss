@@ -1,0 +1,32 @@
+@import 'variables';
+
+.preview-layer {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: calc(100% - 17px);
+  height: 100%;
+
+  .previewer {
+    margin: 20px;
+    width: calc(100% - 40px);
+    height: 50px;
+    background: #{$white};
+    border: 1px solid #{$light-gray};
+    border-radius: 5px;
+  }
+
+  &.mobile {
+    .previewer {
+      width: 374px;
+    }
+  }
+  &.tablet {
+    .previewer {
+      margin: 0px auto;
+      width: 952px;
+    }
+  }
+}

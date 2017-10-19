@@ -1,0 +1,28 @@
+@import 'variables';
+
+.top-nav {
+  position: relative;
+  z-index: 100;
+  margin-top: -60px;
+  width: 100%;
+  height: 60px;
+  background-color: #{$light};
+  transition: margin 150ms ease-in-out;
+
+  &.is-expand {
+    margin-top: 0px;
+  }
+
+  .nav-center {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-right {
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+}

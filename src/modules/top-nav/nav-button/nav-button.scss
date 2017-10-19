@@ -1,0 +1,22 @@
+@import 'variables';
+
+.nav-button {
+  cursor: pointer;
+  padding: 13pt 8pt 3pt 8pt;
+  background-color: transparent;
+  border: none;
+  color: #{$light-gray};
+
+  &:focus {
+    outline: none;
+  }
+  &.active,
+  &:hover {
+    color: #{$gray};
+  }
+
+  .nav-icon {
+    font-size: 30pt;
+    line-height: 30pt;
+  }
+}

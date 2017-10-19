@@ -1,0 +1,26 @@
+@import 'variables';
+
+.viewport {
+  flex-grow: 1;
+  width: calc(100% - 2px);
+  height: 100%;
+  overflow: auto;
+  .wrapper {
+    position: relative;
+    margin: -1px auto;
+    border: 1px solid #{$light-gray};
+    min-height: 100%;
+    &.mobile {
+      max-width: 414px;
+
+      :global {
+        .row {
+          flex-wrap: wrap;
+        }
+      }
+    }
+    &.tablet {
+      max-width: 992px;
+    }
+  }
+}
