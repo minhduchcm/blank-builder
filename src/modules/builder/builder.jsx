@@ -6,22 +6,28 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import style from './builder.scss';
 
+import { moveRow } from '../../redux/modules/builder';
 import { AddWidgetButton } from './add-widget-button';
 import { AddWidgetLine } from './add-widget-line';
 
 import { Row } from './row';
 import { DragPreviewLayer } from './drag-preview-layer';
+import { DragRowPreview } from './drag-row-preview';
 
-function mapStateToProps(state) {
-  return { rows: state.get('builder').toJS() };
-}
-
-@connect(mapStateToProps)
+@connect(
+  state => {
+    return { rows: state.get('builder').toJS() };
+  },
+  { moveRow }
+)
 @DragDropContext(HTML5Backend)
 export class Builder extends Component {
   static propTypes = {
     rows: PropTypes.array.isRequired,
     setConfigPanel: PropTypes.func.isRequired
+  };
+  state = {
+    preview: -1
   };
   renderWelcomeSection() {
     return (
@@ -34,7 +40,9 @@ export class Builder extends Component {
       </div>
     );
   }
-
+  setPreview = index => {
+    this.setState({ preview: index });
+  };
   renderRows() {
     const { rows } = this.props;
     if (rows.length === 0) return this.renderWelcomeSection();
@@ -44,14 +52,29 @@ export class Builder extends Component {
           index === 0 ? (
             <AddWidgetLine key={`pre-${row.id}`} index={index} />
           ) : null,
+          index === this.state.preview ? (
+            <DragRowPreview
+              key="row-drag-preview"
+              setPreview={this.setPreview}
+            />
+          ) : null,
           <Row
             key={row.id}
             id={row.id}
             index={index}
             setConfigPanel={this.props.setConfigPanel}
+            setPreview={this.setPreview}
+            moveRow={() => {
+              let newIndex = this.state.preview;
+              if (index <= this.state.preview) newIndex -= 1;
+              this.props.moveRow(index, newIndex);
+            }}
           />,
           <AddWidgetLine key={`post-${row.id}`} index={index + 1} />
         ])}
+        {this.state.preview === rows.length && (
+          <DragRowPreview key="row-drag-preview" setPreview={this.setPreview} />
+        )}
       </div>
     );
   }

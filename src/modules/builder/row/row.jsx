@@ -39,8 +39,14 @@ class Row extends Component {
     id: PropTypes.string.isRequired,
     widgets: PropTypes.array.isRequired,
     deleteRow: PropTypes.func.isRequired,
+    moveRow: PropTypes.func.isRequired,
     deleteRowData: PropTypes.func.isRequired,
-    setConfigPanel: PropTypes.func.isRequired
+    setConfigPanel: PropTypes.func.isRequired,
+    setPreview: PropTypes.func.isRequired
+  };
+
+  setPreview = index => {
+    console.log(index);
   };
   deleteSection = e => {
     const {
@@ -79,6 +85,7 @@ class Row extends Component {
         className={style.container}
         style={{ opacity: isDragging ? 0.2 : 1 }}
       >
+        {this.state && this.state.preview}
         <div className="row">
           {connectDragSource(
             <button

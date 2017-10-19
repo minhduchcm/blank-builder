@@ -15,7 +15,7 @@ import style from './drag-preview-layer.scss';
   item: monitor.getItem(),
   itemType: monitor.getItemType(),
   initialOffset: monitor.getInitialSourceClientOffset(),
-  currentOffset: monitor.getSourceClientOffset(),
+  offset: monitor.getDifferenceFromInitialOffset(),
   isDragging: monitor.isDragging()
 }))
 class DragPreviewLayer extends Component {
@@ -26,7 +26,7 @@ class DragPreviewLayer extends Component {
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired
     }),
-    currentOffset: PropTypes.shape({
+    offset: PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired
     }),
@@ -34,13 +34,15 @@ class DragPreviewLayer extends Component {
   };
 
   getRowStyles = row => {
-    const { initialOffset, currentOffset } = this.props;
-    if (!initialOffset || !currentOffset) {
+    const { initialOffset, offset } = this.props;
+    if (!initialOffset || !offset) {
       return {
         display: 'none'
       };
     }
-    const transform = `translate(0px, calc(${currentOffset.y}px - 50%))`;
+    const transform = `translate(0px, calc(${initialOffset.y -
+      40 +
+      offset.y}px - 50%))`;
     return {
       transform
     };

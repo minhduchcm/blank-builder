@@ -1,3 +1,12 @@
+@import 'variables';
+
 .builder {
   padding: 50px 0px 150px 0px;
+
+  .rowDragPreview {
+    background: #{$light-gray};
+    margin: 0px 20px;
+    width: calc(100% - 40px);
+    height: 50px;
+  }
 }
