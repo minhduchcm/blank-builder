@@ -10,6 +10,8 @@ import style from './row.scss';
 import { deleteRow } from '../../../redux/modules/builder';
 import { deleteRowData } from '../../../redux/modules/rows';
 import { deleteWidgets } from '../../../redux/modules/widgets';
+import { setActiveWidget } from '../../../redux/modules/config-panel';
+
 import { WidgetContainer } from '../widget';
 import { Splitter } from './splitter';
 
@@ -20,7 +22,7 @@ import dragSource from './drag-source';
   (state, props) => {
     return state.getIn(['rows', props.id]).toJS();
   },
-  { deleteRow, deleteRowData, deleteWidgets }
+  { deleteRow, deleteRowData, deleteWidgets, setActiveWidget }
 )
 @DropTarget(dragItemTypes.ROW, dropTarget, (connectDragSource, monitor) => ({
   connectDropTarget: connectDragSource.dropTarget(),
@@ -39,7 +41,6 @@ class Row extends Component {
     id: PropTypes.string.isRequired,
     widgets: PropTypes.array.isRequired,
     deleteRow: PropTypes.func.isRequired,
-    moveRow: PropTypes.func.isRequired,
     deleteRowData: PropTypes.func.isRequired,
     setConfigPanel: PropTypes.func.isRequired,
     setPreview: PropTypes.func.isRequired
@@ -113,7 +114,10 @@ class Row extends Component {
               <WidgetContainer
                 key={id}
                 id={id}
-                setConfigPanel={this.props.setConfigPanel}
+                setConfigPanel={panel => {
+                  this.props.setActiveWidget(id);
+                  this.props.setConfigPanel(panel);
+                }}
               />
             </div>
           ])}

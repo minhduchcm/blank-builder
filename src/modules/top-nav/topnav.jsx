@@ -4,23 +4,12 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactTip from 'react-tooltip';
 
-import { TOOGLE_TOP_NAV, CHANGE_VIEWPORT } from './../../constant';
 import { viewports } from '../../constant';
+import { toogle } from '../../redux/modules/topnav';
+import { changeViewport } from '../../redux/modules/viewport';
 import style from './topnav.scss';
 import NavButton from './nav-button';
 import Toogler from './toogler';
-
-function toogle() {
-  return {
-    type: TOOGLE_TOP_NAV
-  };
-}
-function changeViewport(viewport) {
-  return {
-    type: CHANGE_VIEWPORT,
-    viewport
-  };
-}
 
 function mapStateToProps(state) {
   return {

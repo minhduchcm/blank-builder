@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import style from './config-panel.scss';
 var instant = null;
 
+@connect(state => {
+  return state.get('config').toJS();
+})
 class ConfigPanelRoot extends Component {
   static propTypes = {};
+  static instant = null;
   constructor(props, context) {
     super(props, context);
-    if (instant === null) {
-      this.state = {};
-      instant = this;
-    }
-    return instant;
+    this.state = {};
+    instant = this;
   }
 
   setConfigPanel = panel => {
+    console.log(panel);
     this.setState({ panel });
   };
 
   render() {
-    return <div>{this.state.panel}</div>;
+    if (this.props.id !== '')
+      return <div className={style.container}>{this.props.id}</div>;
+    return null;
   }
 }
+
 const setConfigPanel = panel => {
   instant.setConfigPanel(panel);
 };
+
 export { setConfigPanel, ConfigPanelRoot };

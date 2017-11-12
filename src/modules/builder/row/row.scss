@@ -2,12 +2,10 @@
 .container {
   padding: 0px 20px;
 
-  &:hover {
-    :global(.row) {
-      border: 1px solid #{$light-gray};
-      .handle {
-        display: block;
-      }
+  :global(.row:hover) {
+    border: 1px solid #{$light-gray};
+    .handle {
+      display: block;
     }
   }
 

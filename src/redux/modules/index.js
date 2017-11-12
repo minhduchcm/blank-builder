@@ -6,6 +6,7 @@ import rows from './rows';
 import widgets from './widgets';
 import modals from './modals';
 import tab from './tab-panel';
+import config from './config-panel';
 
 export default combineReducers({
   topnav,
@@ -14,5 +15,6 @@ export default combineReducers({
   rows,
   widgets,
   modals,
-  tab
+  tab,
+  config
 });

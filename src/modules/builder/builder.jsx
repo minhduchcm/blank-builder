@@ -7,6 +7,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import style from './builder.scss';
 
 import { moveRow } from '../../redux/modules/builder';
+import { toogle as toogleTopNav } from '../../redux/modules/topnav';
+
 import { AddWidgetButton } from './add-widget-button';
 import { AddWidgetLine } from './add-widget-line';
 
@@ -16,9 +18,12 @@ import { DragRowPreview } from './drag-row-preview';
 
 @connect(
   state => {
-    return { rows: state.get('builder').toJS() };
+    return {
+      isTopNavVisiable: state.getIn(['topnav', 'value']),
+      rows: state.get('builder').toJS()
+    };
   },
-  { moveRow }
+  { moveRow, toogleTopNav }
 )
 @DragDropContext(HTML5Backend)
 export class Builder extends Component {
@@ -43,6 +48,15 @@ export class Builder extends Component {
   setPreview = index => {
     this.setState({ preview: index });
   };
+  onBeginDrag = () => {
+    if (this.props.isTopNavVisiable) this.props.toogleTopNav();
+  };
+  onEndDrag = (index, didDrop) => {
+    if (!didDrop || this.state.preview === -1) return;
+    let newIndex = this.state.preview;
+    if (index <= this.state.preview) newIndex = newIndex - 1;
+    this.props.moveRow(index, newIndex);
+  };
   renderRows() {
     const { rows } = this.props;
     if (rows.length === 0) return this.renderWelcomeSection();
@@ -64,16 +78,16 @@ export class Builder extends Component {
             index={index}
             setConfigPanel={this.props.setConfigPanel}
             setPreview={this.setPreview}
-            moveRow={() => {
-              if (this.state.preview === -1) return;
-              let newIndex = this.state.preview;
-              if (index <= this.state.preview) newIndex -= 1;
-              console.log('move');
-              this.props.moveRow(index, newIndex);
-              setTimeout(() => {
-                const element = document.getElementById(row.id);
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }, 10);
+            onBeginDrag={this.onBeginDrag}
+            onEndDrag={didDrop => {
+              this.onEndDrag(index, didDrop);
+              setTimeout(
+                () =>
+                  document
+                    .getElementById(row.id)
+                    .scrollIntoView({ behavior: 'smooth', block: 'center' }),
+                50
+              );
             }}
           />,
           <AddWidgetLine key={`post-${row.id}`} index={index + 1} />

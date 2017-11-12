@@ -19,7 +19,7 @@ export const HIDE_MODAL = '@Modal/HIDE_MODAL';
 export const SELECT_TAB = '@TabPanel/SELECT_TAB';
 
 export const DESELECT_OBJECT = '@ConfigPanel/DESELECT_OBJECT';
-export const CHANGE_CONFIG_PANEL_DOCK = '@ConfigPanel/CHANGE_CONFIG_PANEL_DOCK';
+export const SET_ACTIVE_WIDGET = '@ConfigPanel/SET_ACTIVE_WIDGET';
 
 export const modalTypes = {
   INSERT_ROW_MODAL: '@Modal/INSERT_ROW_MODAL',

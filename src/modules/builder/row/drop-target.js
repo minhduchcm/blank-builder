@@ -1,5 +1,5 @@
 import { findDOMNode } from 'react-dom';
-var hoverRowIndex = null;
+var lastHoverIndex = null;
 var lastPreviewIndex = -1;
 
 var hoverRowClientRect = null;
@@ -11,9 +11,10 @@ export default {
   hover(hoverRow, monitor, target) {
     const dragingRow = monitor.getItem();
     if (hoverRow.index !== dragingRow.index) {
-      if (hoverRow.index !== hoverRowIndex || hoverRowClientRect === null) {
-        hoverRowIndex = hoverRow.index;
+      if (hoverRow.index !== lastHoverIndex || hoverRowClientRect === null) {
+        lastHoverIndex = hoverRow.index;
         hoverRowClientRect = findDOMNode(target).getClientRects()[0];
+        if (hoverRowClientRect.y < 0) hoverRowClientRect.y = 0;
         hoverRowClientRectMiddle =
           hoverRowClientRect.y + hoverRowClientRect.height / 2;
       }

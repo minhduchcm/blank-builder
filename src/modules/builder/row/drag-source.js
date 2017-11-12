@@ -1,12 +1,10 @@
 export default {
   beginDrag(row, monitor, component) {
+    if (component.props.onBeginDrag) component.props.onBeginDrag();
     return row;
   },
-  endDrag(row, monitor) {
-    console.log(monitor.didDrop());
-    if (monitor.didDrop()) {
-      row.moveRow();
-    }
-    row.setPreview(-1);
+  endDrag(rowProps, monitor) {
+    if (rowProps.onEndDrag) rowProps.onEndDrag(monitor.didDrop());
+    rowProps.setPreview(-1);
   }
 };

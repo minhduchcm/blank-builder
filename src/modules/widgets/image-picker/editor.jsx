@@ -4,7 +4,7 @@ import style from './image-picker.scss';
 class Editor extends Component {
   static propTypes = {};
   widgetFocus = () => {
-    this.props.setConfigPanel('image-picker');
+    this.props.setConfigPanel([{}]);
   };
   render() {
     return (

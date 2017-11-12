@@ -60,8 +60,12 @@
     "prebuild": "rimraf build/*"
   },
   "babel": {
-    "presets": ["react-app"],
-    "plugins": ["transform-decorators-legacy"]
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

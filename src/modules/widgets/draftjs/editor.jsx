@@ -91,13 +91,17 @@ class Editor extends Component {
       selection
     );
     this.setState({ editorState });
-    this.props.setConfigPanel('text-editor');
+    this.registerConfigPanel();
+  };
+
+  registerConfigPanel = () => {
+    this.props.setConfigPanel([]);
   };
   render() {
     return (
       <div
         onClick={e => {
-          this.props.setConfigPanel('text-editor');
+          this.registerConfigPanel();
           e.stopPropagation();
         }}
       >

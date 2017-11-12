@@ -5,7 +5,8 @@
   border: 1px solid transparent;
   padding: 10px;
 
-  &:hover {
+  &:hover,
+  &.active {
     border: 1px solid #{$highlight};
   }
 }

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { deleteWidgets, updateWidgets } from '../../../redux/modules/widgets';
 import style from './widget.scss';
 
 @connect(
   (state, props) => {
-    return state.getIn(['widgets', props.id]).toJS();
+    return {
+      widget: state.getIn(['widgets', props.id]).toJS(),
+      active: state.getIn(['config', 'id'])
+    };
   },
   { deleteWidgets, updateWidgets }
 )
@@ -20,7 +24,7 @@ class WidgetContainer extends Component {
   };
   constructor(props, context) {
     super(props, context);
-    this.getEditor(props.type);
+    this.getEditor(props.widget.type);
   }
   getEditor = type => {
     this.Widget = this.context.DynamicComponentMananger.getComponent(
@@ -29,15 +33,17 @@ class WidgetContainer extends Component {
   };
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.type !== this.props.type) {
-      this.getEditor(nextProps.type);
+    if (nextProps.widget.type !== this.props.widget.type) {
+      this.getEditor(nextProps.widget.type);
     }
   };
 
   render() {
     return (
       <div
-        className={style.container}
+        className={classnames(style.container, {
+          [style.active]: this.props.active === this.props.widget.id
+        })}
         onClick={e => {
           if (this.refs.widget && this.refs.widget.widgetFocus)
             this.refs.widget.widgetFocus();
@@ -47,9 +53,9 @@ class WidgetContainer extends Component {
         <this.Widget
           ref="widget"
           setConfigPanel={this.props.setConfigPanel}
-          {...this.props.data}
+          {...this.props.widget.data}
           updateWidgets={patch =>
-            this.props.updateWidgets(this.props.id, patch)}
+            this.props.updateWidgets(this.props.widget.id, patch)}
         />
       </div>
     );

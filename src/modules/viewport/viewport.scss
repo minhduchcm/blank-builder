@@ -1,6 +1,7 @@
 @import 'variables';
 
 .viewport {
+  position: absolute;
   flex-grow: 1;
   width: calc(100% - 2px);
   height: 100%;
@@ -11,16 +12,21 @@
     border: 1px solid #{$light-gray};
     min-height: 100%;
     &.mobile {
-      max-width: 414px;
-
       :global {
         .row {
+          margin: 0px auto;
+          max-width: 414px;
           flex-wrap: wrap;
         }
       }
     }
     &.tablet {
-      max-width: 992px;
+      :global {
+        .row {
+          margin: 0px auto;
+          max-width: 992px;
+        }
+      }
     }
   }
 }
