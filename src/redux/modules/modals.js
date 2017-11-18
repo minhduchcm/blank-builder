@@ -1,9 +1,9 @@
 import { List, fromJS } from 'immutable';
 import { SHOW_MODAL, HIDE_MODAL } from '../../constant';
 
-export const showModal = (type, title, description, props) => ({
+export const showModal = (type, title, description, props, size = '') => ({
   type: SHOW_MODAL,
-  data: { type, title, description, props, visible: true }
+  data: { type, title, description, size, props, visible: true }
 });
 
 export const hideModal = () => ({ type: HIDE_MODAL });

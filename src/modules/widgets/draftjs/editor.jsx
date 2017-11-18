@@ -8,6 +8,12 @@ import {
   RichUtils
 } from 'draft-js';
 
+import FontTypePanel from '../../config-panel/panels/font-type-config-panel';
+import FontStypePanel from '../../config-panel/panels/font-style-config-panel';
+import FontAlignPanel from '../../config-panel/panels/font-align-config-panel';
+import AnimationePanel from '../../config-panel/panels/animation-config-panel';
+import LinkToPanel from '../../config-panel/panels/link-config-panel';
+
 import './draftjs.scss';
 
 class Editor extends Component {
@@ -95,7 +101,13 @@ class Editor extends Component {
   };
 
   registerConfigPanel = () => {
-    this.props.setConfigPanel([]);
+    this.props.setConfigPanel([
+      FontTypePanel,
+      FontStypePanel,
+      FontAlignPanel,
+      AnimationePanel,
+      LinkToPanel
+    ]);
   };
   render() {
     return (

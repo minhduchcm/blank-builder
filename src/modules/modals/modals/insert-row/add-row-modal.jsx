@@ -36,9 +36,7 @@ class InsertRow extends Component {
       .then(widgets => addRowData(data, widgets))
       .then(id => addRow(index, id))
       .then(hideModal)
-      .catch(e => {
-        console.log(e);
-      });
+      .catch(e => {});
   };
   render() {
     const { active, selectTab, rowIndex } = this.props;

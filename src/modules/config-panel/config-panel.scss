@@ -1,6 +1,42 @@
+@import 'variables';
+
 .container {
+  z-index: 9999;
   position: absolute;
   top: 30%;
   left: 0;
-  transform: translateY(-50%);
+  .tab-header {
+    > li {
+      background-color: $light-gray;
+      display: block;
+      a {
+        :global(.icon) {
+          padding-left: 3px;
+          padding-right: 3px;
+          font-size: 30px;
+        }
+      }
+      &:hover {
+        background-color: $gray;
+        a {
+          color: $light;
+        }
+      }
+    }
+  }
+  .tab-body {
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    min-width: 200px;
+    min-height: 150px;
+    background-color: $gray;
+    color: $light;
+    padding: 10px;
+    h3 {
+      text-align: center;
+      border-bottom: 1px solid $light-gray;
+      margin-bottom: 5px;
+    }
+  }
 }
